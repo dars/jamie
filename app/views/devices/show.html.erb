@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-sm-12">
+    <section class="panel">
+      <header class="panel-heading">
+        機器資料
+      </header>
+      <div class="panel-body">
+        <table class="table  table-hover general-table">
+          <tbody>
+          <tr>
+            <th> 機器序號</th>
+            <td> <%= @device.SerialNumber %></td>
+          </tr>
+          <tr>
+            <th> 承租人姓名</th>
+            <td> <%= @device.cus_name %></td>
+          </tr>
+          <tr>
+            <th> 身份證字號</th>
+            <td> <%= @device.cus_uuid %></td>
+          </tr>
+          <tr>
+            <th> 生日</th>
+            <td> <%= @device.cus_birthday %></td>
+          </tr>
+          <tr>
+            <th> 電話</th>
+            <td> <%= @device.cus_tel %></td>
+          </tr>
+          <tr>
+            <th> 申辦日期</th>
+            <td> <%= @device.cus_apply_at %></td>
+          </tr>
+          <tr>
+            <th> 地址</th>
+            <td> <%= @device.cus_address %></td>
+          </tr>
+          </tbody>
+        </table>
+        <%= link_to 'Back', devices_path %>
+      </div>
+    </section>
+  </div>
+</div>

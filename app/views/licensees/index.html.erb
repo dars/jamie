@@ -1,0 +1,34 @@
+<% content_for :pageTitle, '授權商管理' %>
+<div class="row">
+  <div class="col-sm-12">
+    <section class="panel">
+      <header class="panel-heading">
+        授權商資料
+      </header>
+      <div class="panel-body">
+        <table class="table table-striped table-hover general-table">
+          <thead>
+            <tr>
+              <th>名稱</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @licensees.each do |licensee| %>
+              <tr>
+                <td><%= licensee.name %></td>
+                <td>
+                  <%= link_to '檢視', licensee, class:'btn btn-xs btn-info' %>
+                  <%= link_to '編輯', edit_licensee_path(licensee), class:'btn btn-xs btn-success' %>
+                  <%= link_to '刪除', licensee, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-xs btn-danger' %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</div>
+
+<%= link_to '新增授權商', new_licensee_path, class:'btn btn-default' %>
