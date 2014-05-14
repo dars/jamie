@@ -20,3 +20,4 @@
 //= require jquery.nicescroll
 //= require sparkline/jquery.sparkline
 //= require scripts
+//= require users

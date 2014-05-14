@@ -16,4 +16,5 @@
  *= require style-responsive
  *= require font-awesome
  *= require_self
+ *= require users
  */

@@ -1,0 +1,8 @@
+<% if flash[:notice] %>
+<div class="alert alert-<%= flash[:notice][:type] %> fade in">
+  <button data-dismiss="alert" class="close close-sm" type="button">
+    <i class="fa fa-times"></i>
+  </button>
+  <%= flash[:notice][:message] %>
+</div>
+<% end %>

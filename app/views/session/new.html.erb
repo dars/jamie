@@ -10,7 +10,14 @@
 
   <title>Login</title>
 
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <!--Core CSS -->
+  <link href="bs3/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap-reset.css" rel="stylesheet">
+  <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/style-responsive.css" rel="stylesheet" />
 
   <!-- Just for debugging purposes. Don't actually copy this line! -->
   <!--[if lt IE 9]>
@@ -26,15 +33,15 @@
 <body class="login-body">
 
 <div class="container">
-
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {:class=>'form-signin'}) do |f| %>
+  <%= form_for :session, url: login_path, method: :post, html:{class: 'form-signin'} do |f| %>
     <h2 class="form-signin-heading">請輸入帳號密碼登入</h2>
     <div class="login-wrap">
       <div class="user-login-info">
-        <%= f.text_field :email, autofocus: true, class: 'form-control', placeholder: 'User email' %>
-        <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password' %>
+        <%= render :partial => '/layouts/partial/flash_message' %>
+        <%= f.text_field :email, :class=>'form-control', :placeholder=>'User ID' %>
+        <%= f.password_field :password, :class=>'form-control', :placeholder=>'Password' %>
       </div>
-      <%= f.submit "Login", class:'btn btn-lg btn-login btn-block' %>
+      <%= f.submit 'Login', class:'btn btn-lg btn-login btn-block' %>
       <div class="registration">
         雲端傑米機後端管理系統
       </div>
@@ -47,7 +54,8 @@
 <!-- Placed js at the end of the document so the pages load faster -->
 
 <!--Core js-->
-<%= javascript_include_tag "application" %>
+<script src="js/jquery.js"></script>
+<script src="bs3/js/bootstrap.min.js"></script>
 
 </body>
 </html>

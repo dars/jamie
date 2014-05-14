@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
+  get '/login' => 'session#new'
+  post '/login' => 'session#create'
+  delete '/logout' => 'session#destroy'
+  resources :users
+
   root 'devices#index'
-  get 'users/login'
-  get 'users' => 'users#index'
   get 'log/index'
 
   resources :licensees

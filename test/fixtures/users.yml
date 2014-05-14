@@ -4,6 +4,9 @@ one:
   name: MyString
   email: MyString
   password: MyString
+  sign_in_count: 1
+  last_sign_in_at: 2014-05-13 02:48:08
+  last_sign_in_ip: MyString
   role: MyString
   status: false
 
@@ -11,5 +14,8 @@ two:
   name: MyString
   email: MyString
   password: MyString
+  sign_in_count: 1
+  last_sign_in_at: 2014-05-13 02:48:08
+  last_sign_in_ip: MyString
   role: MyString
   status: false

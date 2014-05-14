@@ -21,7 +21,9 @@
               <tr>
                 <td><%= user.name %></td>
                 <td><%= user.email %></td>
-                <td><%= role_label user.role %></td>
+                <td>
+                  <%= role_label user.role, user %>
+                </td>
                 <td><%= status_label user.status %></td>
                 <td>
                   <%= link_to '檢視', {:controller => 'users', :action => 'index'}, class:'btn btn-xs btn-info' %>
@@ -38,4 +40,4 @@
 </div>
 <br>
 
-<%= link_to '新增使用者', {:controller => 'users', :action => 'index'}, class: 'btn btn-default' %>
+<%= link_to '新增使用者', new_user_path, class: 'btn btn-default' %>
