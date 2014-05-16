@@ -3,8 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $('#role_combobox').change ->
-  if $(this).val() is 'admin'
-    $('#license_div').css('display', 'none')
-  else
+  if $(this).val() is 'user'
     $('#license_div').css('display', 'block')
+  else
+    $('#license_div').css('display', 'none')
   return
