@@ -35,6 +35,10 @@
             <th> 地址</th>
             <td> <%= @device.cus_address %></td>
           </tr>
+          <tr>
+            <th> 狀態</th>
+            <td> <%= device_status_label @device.IsCanLogin %></td>
+          </tr>
           </tbody>
         </table>
         <%= link_to 'Back', devices_path %>

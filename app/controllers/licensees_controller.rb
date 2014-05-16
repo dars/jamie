@@ -1,5 +1,6 @@
 class LicenseesController < ApplicationController
   layout "main"
+  before_action :is_signed?
   before_action :set_licensee, only: [:show, :edit, :update, :destroy]
 
   # GET /licensees
@@ -29,7 +30,8 @@ class LicenseesController < ApplicationController
 
     respond_to do |format|
       if @licensee.save
-        format.html { redirect_to @licensee, notice: 'Licensee was successfully created.' }
+        set_flash 'success', 'Licensee was successfully created.'
+        format.html { redirect_to @licensee }
         format.json { render :show, status: :created, location: @licensee }
       else
         format.html { render :new }
@@ -43,7 +45,8 @@ class LicenseesController < ApplicationController
   def update
     respond_to do |format|
       if @licensee.update(licensee_params)
-        format.html { redirect_to @licensee, notice: 'Licensee was successfully updated.' }
+        set_flash 'success', 'Licensee was successfully updated.'
+        format.html { redirect_to @licensee }
         format.json { render :show, status: :ok, location: @licensee }
       else
         format.html { render :edit }
@@ -57,7 +60,8 @@ class LicenseesController < ApplicationController
   def destroy
     @licensee.destroy
     respond_to do |format|
-      format.html { redirect_to licensees_url, notice: 'Licensee was successfully destroyed.' }
+      set_flash 'success', 'Licensee was successfully destroyed.'
+      format.html { redirect_to licensees_url }
       format.json { head :no_content }
     end
   end

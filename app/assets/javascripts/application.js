@@ -13,10 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require bootstrap-switch.min
 //= require turbolinks
 //= require jquery.dcjqaccordion.2.7
 //= require jquery.scrollTo.min
-//= require jQuery-slimScroll-1.3.0/jquery.slimscroll.min.js
+//= require jQuery-slimScroll-1.3.0/jquery.slimscroll.min
 //= require jquery.nicescroll
 //= require sparkline/jquery.sparkline
 //= require scripts

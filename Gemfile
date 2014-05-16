@@ -33,6 +33,8 @@ gem 'will_paginate'
 gem 'devise'
 # Use ActiveModel has_secure_password
 gem 'bcrypt'
+gem 'tzinfo-data', platforms: [:mingw, :mswin , :x64_mingw]
+gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
 
 # Use unicorn as the app server
 # gem 'unicorn'

@@ -3,10 +3,10 @@
     <!-- sidebar menu start--> <div class="leftside-navigation">
     <ul class="sidebar-menu" id="nav-accordion">
       <li>
-        <%= link_to raw('<i class="fa fa-hdd-o"></i><span>Devices</span>'), devices_url %>
-        <%= link_to raw('<i class="fa fa-puzzle-piece"></i><span>Licenees</span>'), licensees_url %>
-        <%= link_to raw('<i class="fa fa-bar-chart-o"></i><span>Log</span>'), controller:'log', action:'index' %>
-        <%= link_to raw('<i class="fa fa-users"></i><span>Users</span>'), users_url %>
+        <%= link_to raw('<i class="fa fa-hdd-o"></i><span>Devices</span>'), devices_url if (is_admin? or is_staff?) %>
+        <%= link_to raw('<i class="fa fa-puzzle-piece"></i><span>Licenees</span>'), licensees_url if (is_admin? or is_staff?) %>
+        <%= link_to raw('<i class="fa fa-bar-chart-o"></i><span>Log</span>'), controller:'log', action:'index' if (is_admin?) %>
+        <%= link_to raw('<i class="fa fa-users"></i><span>Users</span>'), users_url if (is_admin?) %>
       </li>
     </ul></div>
     <!-- sidebar menu end-->

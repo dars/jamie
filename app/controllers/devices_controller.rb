@@ -1,5 +1,6 @@
 class DevicesController < ApplicationController
   layout "main"
+  before_action :is_signed?
   before_action :set_device, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -22,7 +23,8 @@ class DevicesController < ApplicationController
 
     respond_to do |format|
       if @device.save
-        format.html {redirect_to @device, notice: 'User was successfully created.' }
+        set_flash 'success', 'User was successfully created.'
+        format.html {redirect_to @device }
       else
         format.html {render :new}
       end
@@ -30,7 +32,16 @@ class DevicesController < ApplicationController
   end
 
   def update
-
+    respond_to do |format|
+      if @device.update(device_params)
+        set_flash 'success', 'Device was successfully updated.'
+        format.html { redirect_to @device }
+        format.json { render :show, status: :ok, location: @device }
+      else
+        format.html { render :edit }
+        format.json { render json: @device.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy

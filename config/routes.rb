@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   resources :users
 
   root 'devices#index'
-  get 'log/index'
+  get '/log/index'
+  get '/songRecord' => 'log#songRecord'
 
   resources :licensees
   resources :devices

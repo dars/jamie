@@ -22,11 +22,11 @@
                 <td><%= device.SerialNumber %></td>
                 <td><%= device.cus_name %></td>
                 <td><%= device.cus_tel %></td>
-                <td><%= status_label device.IsCanLogin %></td>
+                <td><%= device_status_label device.IsCanLogin %></td>
                 <td>
                     <%= link_to '顯示', device, class:'btn btn-xs btn-info' %>
                     <%= link_to '修改', edit_device_path(device), class:'btn btn-xs btn-success' %>
-                    <%= link_to '刪除', device, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-xs btn-danger' %>
+                    <!--<%= link_to '刪除', device, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-xs btn-danger' %>-->
                 </td>
               </tr>
             <% end %>

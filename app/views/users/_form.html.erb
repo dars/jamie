@@ -45,7 +45,7 @@
             <div class="form-group">
               <%= f.label :role, '角色', class:'control-label col-lg-3' %>
               <div class="col-lg-6">
-                <%= f.select :role, options_for_select([["管理者","admin"], ["授權商", "user"]]), {}, class:'form-control', id:'role_combobox' %>
+                <%= f.select :role, options_for_select([["管理者", "admin"], ["服務人員", "staff"], ["授權商", "user"]]), {}, class:'form-control', id:'role_combobox' %>
               </div>
             </div>
             <div class="form-group" id="license_div">

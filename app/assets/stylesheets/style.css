@@ -5717,3 +5717,7 @@ right: -1px;
     -o-transition: none;
     transition: none;
 }
+
+.form-control{
+    color: #393c4a;
+}

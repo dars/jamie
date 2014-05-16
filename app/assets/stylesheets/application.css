@@ -12,6 +12,7 @@
  *
  *= require bootstrap
  *= require bootstrap-reset
+ *= require bootstrap-switch.min
  *= require style
  *= require style-responsive
  *= require font-awesome
