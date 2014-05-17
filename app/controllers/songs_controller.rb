@@ -4,7 +4,7 @@ class SongsController < ApplicationController
   before_action :set_device, only: [:show, :edit, :update, :destroy]
 
   def index
-    @song = Song.all
+    @songs = Song.all.where("SingerIndex1 != ''").order('SongNumber').page(params[:page])
   end
 
   def show
