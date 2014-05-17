@@ -24,9 +24,8 @@
               <td><%= song.singer1.SingerNameT %><%= ' / '+song.singer2.SingerNameT if (song.singer2) %></td>
               <td><%= song.phylum.name %></td>
               <td>
-                <%= link_to '檢視', {:controller => 'users', :action => 'index'}, class:'btn btn-xs btn-info' %>
-                <%= link_to '編輯', {:controller => 'users', :action => 'index'}, class:'btn btn-xs btn-success' %>
-                <!--<%= link_to '刪除', {:controller => 'users', :action => 'index'}, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-xs btn-danger' %>-->
+                <%= link_to '檢視', song, class:'btn btn-xs btn-info' %>
+                <%= link_to '編輯', edit_song_path(song), class:'btn btn-xs btn-success' %>
               </td>
             </tr>
           <% end %>

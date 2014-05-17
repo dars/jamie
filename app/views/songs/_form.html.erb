@@ -1,0 +1,138 @@
+<div class="row">
+  <div class="col-lg-12">
+    <section class="panel">
+      <header class="panel-heading">
+        Basic validations
+      </header>
+      <div class="panel-body">
+        <div class="form">
+          <%= form_for @song, html:{role: 'form', class: 'form-horizontal'} do |f| %>
+            <% if @song.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@song.errors.count, "error") %> prohibited this user from being saved:</h2>
+                <ul>
+                  <% @song.errors.full_message.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <div class="form-group">
+              <%= f.label :SongNumber, '歌曲編號：', class:'control-label col-lg-3' %>
+              <div class="col-lg-6">
+                <%= f.text_field :SongNumber, class:'form-control'  %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :SongNameT, '歌曲名稱 (繁)：', class:'control-label col-lg-3' %>
+              <div class="col-lg-6">
+                <%= f.text_field :SongNameT, class:'form-control'  %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :SongNameC, '歌曲名稱 (簡)：', class:'control-label col-lg-3' %>
+              <div class="col-lg-6">
+                <%= f.text_field :SongNameC, class:'form-control'  %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :NameIndexT, '歌曲索引 (注音)：', class:'control-label col-lg-3' %>
+              <div class="col-lg-6">
+                <%= f.text_field :NameIndexT, class:'form-control'  %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :NameIndexC, '歌曲索引 (拼音)：', class:'control-label col-lg-3' %>
+              <div class="col-lg-6">
+                <%= f.text_field :NameIndexC, class:'form-control'  %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :SingerIndex1, '歌星 1：', class:'control-label col-lg-3' %>
+              <div class="col-lg-6">
+                <%= text_field_tag 'singer1name', ((@song.SingerIndex1.to_i > 0)?(@song.singer1.SingerNameT):''), id:'singer1name', class:'form-control' %>
+                <%= f.hidden_field :SingerIndex1, id:'singer1'  %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :SingerIndex2, '歌星 2：', class:'control-label col-lg-3' %>
+              <div class="col-lg-6">
+                <%= text_field_tag 'singer2name', ((@song.SingerIndex2.to_i > 0)?(@song.singer2.SingerNameT):''), id:'singer2name', class:'form-control' %>
+                <%= f.hidden_field :SingerIndex2, id:'singer2'  %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :MyFavorite, '我的最愛：', class:'control-label col-lg-3' %>
+              <div class="col-lg-6">
+                <%= f.check_box :MyFavorite, class:'bs-switch'  %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :Phylum, '語言：', class:'control-label col-lg-3' %>
+              <div class="col-lg-6">
+                <%= f.select :Phylum, options_from_collection_for_select(@phylum, :id, :name), {}, class:'form-control', id:'role_combobox'  %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :Class, '字部：', class:'control-label col-lg-3' %>
+              <div class="col-lg-6">
+                <%= f.text_field :Class, class:'form-control' %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :licensee_id, '授權商：', class:'control-label col-lg-3' %>
+              <div class="col-lg-6">
+                <%= f.select :licensee_id, content_tag(:option,'select one...',:value=>0)+options_from_collection_for_select(@licensees, :id, :name), {}, class:'form-control', id:'role_combobox'  %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :Groups, '歌曲主類別：', class:'control-label col-lg-3' %>
+              <div class="col-lg-6">
+                <%= f.select :Groups, content_tag(:option,'select one...',:value=>0)+options_from_collection_for_select(@taxonomies, :id, :name), {}, class:'form-control', id:'role_combobox'  %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :Party, '歌曲次類別：', class:'control-label col-lg-3' %>
+              <div class="col-lg-6">
+                <%= f.select :Party, {}, {}, class:'form-control', id:'role_combobox'  %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :MV, 'Youtube MV：', class:'control-label col-lg-3' %>
+              <div class="col-lg-6">
+                <%= f.text_field :MV, class:'form-control' %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :Teaching, 'Youtube 教學：', class:'control-label col-lg-3' %>
+              <div class="col-lg-6">
+                <%= f.text_field :Teaching, class:'form-control' %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-lg-6">
+                <%= f.submit "Save", class:'btn btn-primary' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

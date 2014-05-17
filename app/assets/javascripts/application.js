@@ -20,5 +20,7 @@
 //= require jQuery-slimScroll-1.3.0/jquery.slimscroll.min
 //= require jquery.nicescroll
 //= require sparkline/jquery.sparkline
+//= require typeahead.bundle
 //= require scripts
 //= require users
+//= require songs

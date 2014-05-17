@@ -1,7 +1,8 @@
 class SongsController < ApplicationController
   layout "main"
   before_action :is_signed?
-  before_action :set_device, only: [:show, :edit, :update, :destroy]
+  before_action :set_song, only: [:show, :edit, :update, :destroy]
+  before_action :set_options, only: [:new, :edit]
 
   def index
     @songs = Song.all.where("SingerIndex1 != ''").order('SongNumber').page(params[:page])
@@ -50,6 +51,12 @@ class SongsController < ApplicationController
   end
 
   private
+  def set_options
+    @phylum = Phylum.all
+    @taxonomies = Taxonomy.all.where('parent_id is null')
+    @licensees = Licensee.all
+  end
+
   def set_song
     @song = Song.find(params[:id])
   end

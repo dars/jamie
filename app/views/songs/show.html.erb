@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-sm-12">
+    <section class="panel">
+      <header class="panel-heading">
+        歌曲資料
+      </header>
+      <div class="panel-body">
+        <table class="table  table-hover general-table">
+          <tbody>
+          <tr>
+            <th> 歌曲編號</th>
+            <td> <%= @song.human_song_number %></td>
+          </tr>
+          <tr>
+            <th> 歌曲名稱</th>
+            <td> <%= @song.SongNameT %> / <%= @song.SongNameC %></td>
+          </tr>
+          <tr>
+            <th> 歌曲索引</th>
+            <td> <%= @song.NameIndexT %> / <%= @song.NameIndexC %></td>
+          </tr>
+          <tr>
+            <th> 歌手</th>
+            <td> <%= @song.singer1.SingerNameT %><%= @song.singer2.SingerNameT if(@song.singer2) %></td>
+          </tr>
+          <tr>
+            <th> 語系</th>
+            <td> <%= @song.phylum.name %></td>
+          </tr>
+          </tbody>
+        </table>
+        <%= link_to 'Back', songs_path %>
+      </div>
+    </section>
+  </div>
+</div>

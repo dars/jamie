@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get '/log/index'
   get '/songRecord' => 'log#songRecord'
 
+  get '/singers/get' => 'singers#get'
+  resources :singers
   resources :songs
   resources :licensees
   resources :devices
