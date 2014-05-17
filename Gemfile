@@ -30,7 +30,6 @@ gem 'font-awesome-rails'
 gem 'bootstrap3-rails'
 gem 'will_paginate'
 
-gem 'devise'
 # Use ActiveModel has_secure_password
 gem 'bcrypt'
 gem 'tzinfo-data', platforms: [:mingw, :mswin , :x64_mingw]

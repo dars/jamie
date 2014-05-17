@@ -23,7 +23,7 @@ class DevicesController < ApplicationController
 
     respond_to do |format|
       if @device.save
-        set_flash 'success', 'User was successfully created.'
+        set_flash 'success', 'Device was successfully created.'
         format.html {redirect_to @device }
       else
         format.html {render :new}
