@@ -1,10 +1,11 @@
 class SingersController < ApplicationController
+  layout 'main'
   before_action :set_singer, only: [:show, :edit, :update, :destroy]
 
   # GET /singers
   # GET /singers.json
   def index
-    @singers = Singer.all
+    @singers = Singer.all.page(params[:page])
   end
 
   # GET /singers/1
@@ -73,6 +74,6 @@ class SingersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def singer_params
-      params[:singer]
+      params.require(:singer).permit(:Location, :SingerNameT, :NameIndexT, :SingerNameC, :NameIndexC, :Country, :Class)
     end
 end

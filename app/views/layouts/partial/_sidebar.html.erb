@@ -5,6 +5,7 @@
       <li>
         <%= link_to raw('<i class="fa fa-hdd-o"></i><span>機器管理</span>'), devices_url if (is_admin? or is_staff?) %>
         <%= link_to raw('<i class="fa fa-music"></i><span>歌曲管理</span>'), songs_url if (is_admin?) %>
+        <%= link_to raw('<i class="fa fa-microphone"></i><span>歌星管理</span>'), singers_url if (is_admin?) %>
         <%= link_to raw('<i class="fa fa-puzzle-piece"></i><span>授權商管理</span>'), licensees_url if (is_admin? or is_staff?) %>
         <%= link_to raw('<i class="fa fa-users"></i><span>使用者管理</span>'), users_url if (is_admin?) %>
         <%= link_to raw('<i class="fa fa-bar-chart-o"></i><span>Log</span>'), controller:'log', action:'index' if (is_admin?) %>

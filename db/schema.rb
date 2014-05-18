@@ -60,14 +60,73 @@ ActiveRecord::Schema.define(version: 20140512193732) do
     t.text    "Note"
   end
 
+  create_table "SingerTable", primary_key: "ID", force: true do |t|
+    t.integer "Location"
+    t.string  "SingerNameT"
+    t.string  "NameIndexT"
+    t.integer "StrokeT"
+    t.string  "SingerNameC"
+    t.string  "NameIndexC"
+    t.integer "StrokeC"
+    t.integer "Country"
+    t.integer "Class"
+  end
+
+  create_table "SongTable", force: true do |t|
+    t.integer "Album"
+    t.integer "Location"
+    t.string  "SongNumber"
+    t.string  "SongNameT"
+    t.string  "NameIndexT"
+    t.integer "StrokeT"
+    t.string  "SongNameC"
+    t.string  "NameIndexC"
+    t.integer "StrokeC"
+    t.integer "SingerIndex1"
+    t.integer "SingerIndex2"
+    t.integer "Type"
+    t.integer "Count"
+    t.integer "MyFavorite"
+    t.integer "Phylum"
+    t.integer "Class"
+    t.integer "Groups"
+    t.integer "Party"
+    t.integer "Data"
+    t.integer "ExStartTime"
+    t.integer "ExAllTime"
+    t.integer "LightID"
+    t.integer "LogoID"
+    t.string  "MV"
+    t.string  "Teaching"
+    t.integer "licensee_id"
+  end
+
+  create_table "country", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "kind", force: true do |t|
+    t.string "name"
+  end
+
   create_table "licensees", force: true do |t|
     t.string "name"
+  end
+
+  create_table "phylum", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "taxonomies", force: true do |t|
+    t.string  "name"
+    t.integer "parent_id"
+    t.integer "identity"
   end
 
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "password"
+    t.string   "password_digest"
     t.integer  "sign_in_count",   default: 0
     t.datetime "last_sign_in_at"
     t.string   "last_sign_in_ip"
@@ -80,5 +139,14 @@ ActiveRecord::Schema.define(version: 20140512193732) do
   end
 
   add_index "users", ["session_token"], name: "index_users_on_session_token", unique: true, using: :btree
+
+  create_table "watchdog", force: true do |t|
+    t.string   "ip"
+    t.string   "type"
+    t.string   "message"
+    t.string   "location"
+    t.integer  "uid"
+    t.datetime "created_at"
+  end
 
 end

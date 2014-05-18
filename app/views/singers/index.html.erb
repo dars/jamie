@@ -1,23 +1,39 @@
-<h1>Listing singers</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @singers.each do |singer| %>
-      <tr>
-        <td><%= link_to 'Show', singer %></td>
-        <td><%= link_to 'Edit', edit_singer_path(singer) %></td>
-        <td><%= link_to 'Destroy', singer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Singer', new_singer_path %>
+<% content_for :pageTitle, '歌星資料管理' %>
+<div class="row">
+  <div class="col-sm-12">
+    <section class="panel">
+      <header class="panel-heading">
+        歌星資料
+      </header>
+      <div class="panel-body">
+        <table class="table table-striped table-hover general-table">
+          <thead>
+          <tr>
+            <th>歌星名稱</th>
+            <th>歌星字首</th>
+            <th>組合</th>
+            <th>國別</th>
+            <th>&nbsp;</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @singers.each do |singer| %>
+            <tr>
+              <td><%= singer.SingerNameT %> / <%= singer.SingerNameC %></td>
+              <td><%= singer.NameIndexT %></td>
+              <td><%= singer.kind.name if(singer.Class > 0) %></td>
+              <td><%= singer.country.name if(singer.Country > 0) %></td>
+              <td>
+                <%= link_to '顯示', singer, class:'btn btn-xs btn-info' %>
+                <%= link_to '修改', edit_singer_path(singer), class:'btn btn-xs btn-success' %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <%= will_paginate @singers %>
+      </div>
+    </section>
+  </div>
+</div>
+<%= link_to '新增歌星', new_singer_path, class:'btn btn-default' %>
