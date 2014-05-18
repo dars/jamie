@@ -1,6 +1,7 @@
 class SingersController < ApplicationController
   layout 'main'
   before_action :set_singer, only: [:show, :edit, :update, :destroy]
+  before_action :set_options, only: [:edit, :new]
 
   # GET /singers
   # GET /singers.json
@@ -67,6 +68,10 @@ class SingersController < ApplicationController
   end
 
   private
+    def set_options
+      @countries = Country.all
+      @kinds = Kind.all
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_singer
       @singer = Singer.find(params[:id])
