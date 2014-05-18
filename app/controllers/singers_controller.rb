@@ -6,7 +6,19 @@ class SingersController < ApplicationController
   # GET /singers
   # GET /singers.json
   def index
-    @singers = Singer.all.page(params[:page])
+    @kinds = Kind.all
+    if(params)
+      @singers = Singer.all
+      if(params[:name])
+        @singers = @singers.where("SingerNameT Like '%"+params[:name]+"%'")
+      end
+      if(params[:kind])
+        @singers = @singers.where("Class=?", params[:kind])
+      end
+      @singers = @singers.page(params[:page])
+    else
+      @singers = Singer.all.page(params[:page])
+    end
   end
 
   # GET /singers/1

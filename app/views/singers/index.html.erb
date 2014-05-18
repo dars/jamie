@@ -2,6 +2,18 @@
 <div class="row">
   <div class="col-sm-12">
     <section class="panel">
+      <header class="panel-heading">Filter Form</header>
+      <div class="panel-body">
+        <%= form_tag('/singers', method: :get, class:'form-inline') do %>
+          <%= text_field_tag 'name', params[:name], class:'form-control round-input', placeholder:'歌星名稱' %>
+          <%= select_tag 'kind', content_tag(:option,'select one...',:value=>0)+options_from_collection_for_select(@kinds, :id, :name, params[:kind]), class:'form-control' %>
+          <%= submit_tag '送出', class:'btn btn-round btn-success' %>
+        <% end %>
+      </div>
+    </section>
+  </div>
+  <div class="col-sm-12">
+    <section class="panel">
       <header class="panel-heading">
         歌星資料
       </header>
