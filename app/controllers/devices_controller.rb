@@ -2,6 +2,7 @@ class DevicesController < ApplicationController
   layout "main"
   before_action :is_signed?
   before_action :set_device, only: [:show, :edit, :update, :destroy]
+  before_action :set_options, only: [:new, :edit]
 
   def index
     @devices = Device.all
@@ -49,6 +50,9 @@ class DevicesController < ApplicationController
   end
 
   private
+    def set_options
+      @dealers = Dealer.all
+    end
     def set_device
       @device = Device.find(params[:id])
     end

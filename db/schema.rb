@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140512193732) do
+ActiveRecord::Schema.define(version: 20140518182612) do
 
   create_table "Device", primary_key: "ID", force: true do |t|
     t.integer "ModelID",                      default: 0,  null: false
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20140512193732) do
     t.string  "cus_tel",           limit: 20
     t.string  "cus_apply_at",      limit: 20
     t.string  "cus_address"
+    t.integer "dealer_id"
   end
 
   create_table "Log", primary_key: "ID", force: true do |t|
@@ -101,11 +102,17 @@ ActiveRecord::Schema.define(version: 20140512193732) do
     t.integer "licensee_id"
   end
 
-  create_table "country", force: true do |t|
+  create_table "countries", force: true do |t|
     t.string "name"
   end
 
-  create_table "kind", force: true do |t|
+  create_table "dealers", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "kinds", force: true do |t|
     t.string "name"
   end
 
@@ -139,14 +146,5 @@ ActiveRecord::Schema.define(version: 20140512193732) do
   end
 
   add_index "users", ["session_token"], name: "index_users_on_session_token", unique: true, using: :btree
-
-  create_table "watchdog", force: true do |t|
-    t.string   "ip"
-    t.string   "type"
-    t.string   "message"
-    t.string   "location"
-    t.integer  "uid"
-    t.datetime "created_at"
-  end
 
 end
