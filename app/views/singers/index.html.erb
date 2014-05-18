@@ -9,8 +9,8 @@
         <table class="table table-striped table-hover general-table">
           <thead>
           <tr>
-            <th>歌星名稱</th>
-            <th>歌星字首</th>
+            <th>歌星名稱 (繁)</th>
+            <th>歌星名稱 (簡)</th>
             <th>組合</th>
             <th>國別</th>
             <th>&nbsp;</th>
@@ -19,9 +19,9 @@
           <tbody>
           <% @singers.each do |singer| %>
             <tr>
-              <td><%= singer.SingerNameT %> / <%= singer.SingerNameC %></td>
-              <td><%= singer.NameIndexT %></td>
-              <td><%= singer.kind.name if(singer.Class > 0) %></td>
+              <td><%= singer.SingerNameT %> <span class="badge bg-success"><%= singer.NameIndexT %></span></td>
+              <td><%= singer.SingerNameC %> <span class="badge bg-success"><%= singer.NameIndexC %></span></td>
+              <td><%= singer_kind singer.Class %></td>
               <td><%= singer.country.name if(singer.Country > 0) %></td>
               <td>
                 <%= link_to '顯示', singer, class:'btn btn-xs btn-info' %>
