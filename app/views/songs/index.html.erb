@@ -2,6 +2,19 @@
 <div class="row">
   <div class="col-sm-12">
     <section class="panel">
+      <header class="panel-heading">Filter Form</header>
+      <div class="panel-body">
+        <%= form_tag('/songs', method: :get, class:'form-inline') do %>
+          <%= text_field_tag 'number', params[:number], class:'form-control round-input', placeholder:'歌曲編號' %>
+          <%= text_field_tag 'name', params[:name], class:'form-control round-input', placeholder:'歌曲名稱' %>
+          <%= text_field_tag 'singer', params[:singer], class:'form-control round-input', placeholder:'歌星名稱' %>
+          <%= submit_tag '送出', class:'btn btn-round btn-success' %>
+        <% end %>
+      </div>
+    </section>
+  </div>
+  <div class="col-sm-12">
+    <section class="panel">
       <header class="panel-heading">
         歌曲列表
       </header>
@@ -21,7 +34,7 @@
             <tr>
               <td><%= song.human_song_number %></td>
               <td><%= song.SongNameT %></td>
-              <td><%= song.singer1.SingerNameT %><%= ' / '+song.singer2.SingerNameT if (song.singer2) %></td>
+              <td><%= link_to song.singer1.SingerNameT, '/songs?singer='+song.singer1.SingerNameT %><%= ' / '+song.singer2.SingerNameT if (song.singer2) %></td>
               <td><%= song.phylum.name %></td>
               <td>
                 <%= link_to '檢視', song, class:'btn btn-xs btn-info' %>

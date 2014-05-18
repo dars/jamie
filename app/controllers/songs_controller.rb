@@ -5,7 +5,24 @@ class SongsController < ApplicationController
   before_action :set_options, only: [:new, :edit]
 
   def index
-    @songs = Song.all.where("SingerIndex1 != ''").order('SongNumber').page(params[:page])
+    if(params)
+      @songs = Song.all
+      if(params[:name])
+        @songs = @songs.where("SongNameT Like '%"+params[:name]+"%'")
+      end
+      if(params[:number].to_i > 0)
+        @songs = @songs.select('id, SongNumber, SongNameT, SingerIndex1, SingerIndex2, Phylum').where('substring(Conv(SongNumber, 10, 16), 12)=?', params[:number])
+      end
+      if(params[:singer])
+        @singer = Singer.where("SingerNameT=?", params[:singer]).first
+        if(@singer)
+          @songs = @songs.where("SingerIndex1=?", @singer.ID)
+        end
+      end
+      @songs = @songs.where("SingerIndex1 != ''").order('SongNumber').page(params[:page])
+    else
+      @songs = Song.all.where("SingerIndex1 != ''").order('SongNumber').page(params[:page])
+    end
   end
 
   def show
