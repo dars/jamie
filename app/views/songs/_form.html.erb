@@ -93,21 +93,25 @@
             <div class="form-group">
               <%= f.label :licensee_id, '授權商：', class:'control-label col-lg-3' %>
               <div class="col-lg-6">
-                <%= f.select :licensee_id, content_tag(:option,'select one...',:value=>0)+options_from_collection_for_select(@licensees, :id, :name), {}, class:'form-control', id:'role_combobox'  %>
+                <%= f.select :licensee_id, content_tag(:option,'select one...',:value=>0)+options_from_collection_for_select(@licensees, :id, :name, @song.licensee_id), {}, class:'form-control', id:'role_combobox'  %>
               </div>
             </div>
 
             <div class="form-group">
               <%= f.label :Groups, '歌曲主類別：', class:'control-label col-lg-3' %>
               <div class="col-lg-6">
-                <%= f.select :Groups, content_tag(:option,'select one...',:value=>0)+options_from_collection_for_select(@taxonomies, :id, :name), {}, class:'form-control', id:'role_combobox'  %>
+                <%= f.select :Groups, content_tag(:option,'select one...',:value=>0)+options_from_collection_for_select(@taxonomies, :id, :name, @song.Groups), {}, class:'form-control', id:'groups_combobox'  %>
               </div>
             </div>
 
             <div class="form-group">
               <%= f.label :Party, '歌曲次類別：', class:'control-label col-lg-3' %>
               <div class="col-lg-6">
-                <%= f.select :Party, {}, {}, class:'form-control', id:'role_combobox'  %>
+                <% if @song.Groups %>
+                  <%= f.select :Party, content_tag(:option,'select one...',:value=>0)+options_from_collection_for_select(@party, :id, :name, @song.Party), {}, class:'form-control', id:'party_combobox' %>
+                <% else %>
+                  <%= f.select :Party, content_tag(:option,'select one...',:value=>0), {}, class:'form-control', id:'party_combobox' %>
+                <% end %>
               </div>
             </div>
 

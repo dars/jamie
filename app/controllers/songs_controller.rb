@@ -30,12 +30,12 @@ class SongsController < ApplicationController
   end
 
   def edit
-
+     @party = Taxonomy.where('parent_id=?', @song.Groups)
   end
 
   def update
     respond_to do |format|
-      if song.update(song_params)
+      if @song.update(song_params)
         set_flash 'success', 'Song was successfully updated.'
         format.html { redirect_to @song }
         format.json { render :show, status: :ok, location: @song }
@@ -50,6 +50,10 @@ class SongsController < ApplicationController
 
   end
 
+  def getParty
+    @items = Taxonomy.where('parent_id='+params[:groups]).order('identity')
+  end
+
   private
   def set_options
     @phylum = Phylum.all
@@ -62,6 +66,6 @@ class SongsController < ApplicationController
   end
 
   def song_params
-    params.require(:device).permit(:Album, :Location, :SongNumber, :SongNameT, :NameIndexT, :SongNameC, :NameIndexC, :StrokeC, :SingerIndex1, :SingerIndex2, :Type, :Count, :MyFavorite, :Phylum, :Class, :Group, :Party, :Data, :ExStartTime, :ExAllTime, :LightID, :LogoID, :MV, :Teaching)
+    params.require(:song).permit(:Album, :Location, :SongNumber, :SongNameT, :NameIndexT, :SongNameC, :NameIndexC, :StrokeC, :SingerIndex1, :SingerIndex2, :Type, :Count, :MyFavorite, :Phylum, :Class, :Groups, :Party, :Data, :ExStartTime, :ExAllTime, :LightID, :LogoID, :MV, :Teaching, :licensee_id)
   end
 end
