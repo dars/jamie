@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140518182612) do
+ActiveRecord::Schema.define(version: 20140520071707) do
 
   create_table "Device", primary_key: "ID", force: true do |t|
     t.integer "ModelID",                      default: 0,  null: false
@@ -128,6 +128,15 @@ ActiveRecord::Schema.define(version: 20140518182612) do
     t.string  "name"
     t.integer "parent_id"
     t.integer "identity"
+  end
+
+  create_table "transations", force: true do |t|
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "type"
+    t.integer  "device_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
