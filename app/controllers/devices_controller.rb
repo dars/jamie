@@ -3,6 +3,7 @@ class DevicesController < ApplicationController
   before_action :is_signed?
   before_action :set_device, only: [:show, :edit, :update, :destroy]
   before_action :set_options, only: [:new, :edit]
+  skip_before_filter :verify_authenticity_token, :only => [:deleTransaction]
 
   def index
     @devices = Device.all
@@ -17,6 +18,7 @@ class DevicesController < ApplicationController
   end
 
   def edit
+    @transaction = Transation.where('device_id=?', @device.id)
   end
 
   def create
@@ -49,6 +51,31 @@ class DevicesController < ApplicationController
 
   end
 
+  def addTransaction
+    @trans = Transation.new(
+        :device_id => params[:device_id],
+        :start_date => params[:start_date],
+        :end_date => params[:end_date],
+        :type => params[:type]
+    )
+    @trans.save
+    @device = Device.find(params[:device_id])
+    set_flash 'success', 'Transaction was successfully created.'
+    redirect_to edit_device_path(@device)
+  end
+
+  def deleTransaction
+    @transaction = Transation.find(params[:id])
+    if @transaction
+      @device = Device.find(@transaction.device_id)
+      @transaction.destroy
+      set_flash 'success', 'Transaction was successfully destroyed.'
+      redirect_to edit_device_path(@device)
+    else
+      redirect_to device_path
+    end
+  end
+
   private
     def set_options
       @dealers = Dealer.all
@@ -58,6 +85,6 @@ class DevicesController < ApplicationController
     end
 
     def device_params
-      params.require(:device).permit(:ModelID, :SerialNumber, :FolderNameLocal, :FolderNameOnline, :FolderNameUpdate, :IsCanLogin, :SongServerGroupID, :ProducersID, :PublisherID, :AgentsID, :ConsumerID, :Note, :cus_name, :cus_uuid, :cus_birthday, :cus_tel, :cus_apply_at, :cus_address)
+      params.require(:device).permit(:ModelID, :SerialNumber, :FolderNameLocal, :FolderNameOnline, :FolderNameUpdate, :IsCanLogin, :SongServerGroupID, :ProducersID, :PublisherID, :AgentsID, :ConsumerID, :Note, :cus_name, :cus_uuid, :cus_birthday, :cus_tel, :cus_apply_at, :cus_address, :dealer_id)
     end
 end

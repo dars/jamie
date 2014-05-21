@@ -84,4 +84,47 @@
       </div>
     </section>
   </div>
+  <div class="col-sm-12">
+    <section class="panel">
+      <header class="panel-heading">租約記錄</header>
+      <div class="panel-body">
+        <%= form_tag('/devices/addTransaction', method: :post, class:'form-inline') do %>
+          <div class="form-group">
+            <label for="">新增租約：</label>
+          </div>
+          <div class="form-group">
+            <%= select_tag 'type', options_for_select([['年約', 1], ['月約', 2]]), class:'form-control' %>
+          </div>
+          <div class="form-group">
+              <%= text_field_tag 'start_date', '',class:'form-control', placeholder:'開始日期' %>
+          </div>
+          <div class="form-group">
+              <%= text_field_tag 'end_date', '',class:'form-control', placeholder: '結束日期' %>
+          </div>
+          <%= hidden_field_tag 'device_id', @device.id %>
+          <%= submit_tag '送出', class:'btn btn-info' %>
+        <% end %>
+        <table class="table  table-hover general-table">
+          <thead>
+          <tr>
+            <th>類型</th>
+            <th>起始日</th>
+            <th>結束日</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @transaction.each do |t| %>
+          <tr>
+            <td><%= t.type==1?'年約':'月約' %></td>
+            <td><%= t.start_date %></td>
+            <td><%= t.end_date %></td>
+            <td><%= link_to '刪除', devices_deleTransaction_path(t), method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger btn-xs' %></td>
+          </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
 </div>

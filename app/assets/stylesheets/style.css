@@ -266,7 +266,7 @@ ul.sidebar-menu li a {
     text-decoration:none;
     display:block;
     padding:18px 0 18px 25px;
-    font-size:12px;
+    font-size:16px;
     outline:none;
     -webkit-transition:all 0.3s ease;
     -moz-transition:all 0.3s ease;
@@ -5720,4 +5720,8 @@ right: -1px;
 
 .form-control{
     color: #393c4a;
+}
+
+#main-content {
+    font-size: 16px;
 }

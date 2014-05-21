@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :users
 
   root 'devices#index'
+  post '/devices/addTransaction'
+  delete '/devices/deleTransaction/:id' => 'devices#deleTransaction', :as => 'devices_deleTransaction'
   get '/log/index'
   get '/songRecord' => 'log#songRecord'
 
