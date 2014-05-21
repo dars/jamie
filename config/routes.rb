@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'playlog/index'
+
   resources :dealers
 
   get '/login' => 'session#new'

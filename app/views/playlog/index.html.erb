@@ -1,0 +1,43 @@
+<table class="table table-invoice">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th class="text-center">歌曲編號 / 歌曲名稱</th>
+    <th class="text-center">次數</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% times = 0 %>
+  <% @items.each_with_index do |item, index| %>
+  <tr>
+    <td><%= index+1 %></td>
+    <td>
+      <span class="badge bg-info"><%= [item.songNumberID].pack('l').unpack('H*')[0].scan(/[0-9a-z]{2}/i).reverse.join[3..10] %></span>
+      <%= item.song.SongNameT %></td>
+    <td class="text-center"><%= item.count %></td>
+    <% times += item.count %>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<div class="row">
+  <!--<div class="col-md-8 col-xs-7 payment-method">-->
+    <!--<h4>Payment Method</h4>-->
+
+    <!--<p>1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>-->
+
+    <!--<p>2. Pellentesque tincidunt pulvinar magna quis rhoncus.</p>-->
+
+    <!--<p>3. Cras rhoncus risus vitae congue commodo.</p>-->
+    <!--<br>-->
+
+    <!--<h3 class="inv-label itatic">Thank you for your business</h3>-->
+  <!--</div>-->
+  <div class="col-md-4 col-xs-5 invoice-block pull-right">
+    <ul class="unstyled amounts">
+      <li>當月基數 $<%= @base %> </li>
+      <li class="grand-total">總點唱次數: <%= times %></li>
+    </ul>
+  </div>
+</div>

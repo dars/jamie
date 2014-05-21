@@ -37,6 +37,15 @@ module SessionHelper
     end
   end
 
+  def is_dealer?
+    is_signed?
+    if (current_user.role == 'dealer')
+      return true
+    else
+      return false
+    end
+  end
+
   def is_user?
     is_signed?
     if (current_user.role == 'user')
