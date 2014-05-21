@@ -13,7 +13,16 @@ class SessionController < ApplicationController
       @user.sign_in_count = @user.sign_in_count+1
       @user.save
       set_flash 'success', '登入成功'
-      redirect_to devices_path
+      case (@user.role)
+        when 'admin'
+          redirect_to devices_path
+        when 'staff'
+          redirect_to devices_path
+        when 'dealer'
+          redirect_to devices_device_report_path
+        when 'user'
+          redirect_to playlog_index_path
+      end
     else
       set_flash 'danger', '登入失敗，請確認您的資料', true
       render :new

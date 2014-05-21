@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :users
 
   root 'devices#index'
+  get '/devices/device_report'
   post '/devices/addTransaction'
   delete '/devices/deleTransaction/:id' => 'devices#deleTransaction', :as => 'devices_deleTransaction'
   get '/log/index'

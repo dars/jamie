@@ -51,6 +51,40 @@ class DevicesController < ApplicationController
 
   end
 
+  def device_report
+    @dealers = User.where('role=?', 'dealer')
+    @total_count = 0
+    @total_price = 0
+    if (is_dealer?)
+      dealer_id = current_user.id
+    elsif(params[:dealer])
+      dealer_id = params[:dealer]
+    end
+    if(dealer_id)
+      # 找到經銷商
+      @dealer = User.find(dealer_id)
+      # 找到相關機器
+      @devices = Device.select('ID').where('dealer_id=?', dealer_id)
+      # 該月總天數
+      @base_days = Time.days_in_month(Date.today.month)
+
+      @devices.each do |device|
+        days = alive_days device.ID, Date.today
+        if (days > 0)
+          if (days == @base_days)
+            # 滿該月總天數以 42 計算
+            @total_price += 42
+          else
+            # 不滿該月總天數以 (42/該月總天數)x貢獻天數
+            @total_price += ((42/@base_days)*days)
+          end
+          # 該月有貢獻機器
+          @total_count += 1
+        end
+      end
+    end
+  end
+
   def addTransaction
     @trans = Transation.new(
         :device_id => params[:device_id],
@@ -86,5 +120,28 @@ class DevicesController < ApplicationController
 
     def device_params
       params.require(:device).permit(:ModelID, :SerialNumber, :FolderNameLocal, :FolderNameOnline, :FolderNameUpdate, :IsCanLogin, :SongServerGroupID, :ProducersID, :PublisherID, :AgentsID, :ConsumerID, :Note, :cus_name, :cus_uuid, :cus_birthday, :cus_tel, :cus_apply_at, :cus_address, :dealer_id)
+    end
+
+    # 計算機器該月貢獻天數
+    # target_date = '2014-05-21'
+    def alive_days (device_id, target_date)
+      s_date = target_date.year.to_s+'-'+target_date.month.to_s+'-01'
+      e_date = target_date.year.to_s+'-'+target_date.month.to_s+'-'+Time.days_in_month(target_date.month).to_s
+      @transaction = Transation.where('device_id=?', device_id).where('(? between start_date and end_date) or (? between start_date and end_date)', s_date, e_date).first
+      if(@transaction)
+        if (@transaction.start_date < Date.new(target_date.year, target_date.month, 1))
+          @date1 = Date.new(target_date.year, target_date.month, 1)
+        else
+          @date1 = @transaction.start_date
+        end
+        if (target_date > @transaction.end_date)
+          @date2 = @transaction.end_date
+        else
+          @date2 = target_date
+        end
+      else
+        return -1
+      end
+      return (@date2 - @date1 + 1).to_i
     end
 end
