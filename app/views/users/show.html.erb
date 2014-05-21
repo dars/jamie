@@ -1,44 +1,32 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Password:</strong>
-  <%= @user.password %>
-</p>
-
-<p>
-  <strong>Sign in count:</strong>
-  <%= @user.sign_in_count %>
-</p>
-
-<p>
-  <strong>Last sign in at:</strong>
-  <%= @user.last_sign_in_at %>
-</p>
-
-<p>
-  <strong>Last sign in ip:</strong>
-  <%= @user.last_sign_in_ip %>
-</p>
-
-<p>
-  <strong>Role:</strong>
-  <%= @user.role %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @user.status %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class="row">
+  <div class="col-sm-12">
+    <section class="panel">
+      <header class="panel-heading">
+        帳號資料
+      </header>
+      <div class="panel-body">
+        <table class="table general-table table-striped">
+          <tbody>
+            <tr>
+              <th> 帳號名稱</th>
+              <td> <%= @user.name %></td>
+            </tr>
+            <tr>
+              <th> 帳號</th>
+              <td> <%= @user.email %></td>
+            </tr>
+            <tr>
+              <th> 帳號狀態</th>
+              <td> <%= status_label @user.status %></td>
+            </tr>
+            <tr>
+              <th> 帳號角色</th>
+              <td> <%= role_label @user.role, @user %></td>
+            </tr>
+          </tbody>
+        </table>
+        <%= link_to 'Back', users_path %>
+      </div>
+    </section>
+  </div>
+</div>

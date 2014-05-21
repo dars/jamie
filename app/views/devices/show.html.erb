@@ -36,6 +36,10 @@
             <td> <%= @device.cus_address %></td>
           </tr>
           <tr>
+            <th> 經銷商</th>
+            <td> <%= @device.dealer.name if(@device.dealer_id) %></td>
+          </tr>
+          <tr>
             <th> 狀態</th>
             <td> <%= device_status_label @device.IsCanLogin %></td>
           </tr>

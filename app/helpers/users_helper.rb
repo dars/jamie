@@ -10,8 +10,12 @@ module UsersHelper
   def role_label(role, user)
     if role == 'admin'
       return raw('<span class="label label-info">Admin</span>')
+    elsif role == 'staff'
+      return raw('<span class="label label-success">工作人員</span>')
+    elsif role == 'dealer'
+      return raw('<span class="label label-primary">經銷商</span>')
     else
-      return raw('<span class="label label-inverse">User ['+user.license.name+']</span>')
+      return raw('<span class="label label-inverse">版權商 ['+user.license.name+']</span>')
     end
   end
 end

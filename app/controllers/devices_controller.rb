@@ -78,7 +78,7 @@ class DevicesController < ApplicationController
 
   private
     def set_options
-      @dealers = Dealer.all
+      @dealers = User.where('role=?', 'dealer')
     end
     def set_device
       @device = Device.find(params[:id])

@@ -26,7 +26,7 @@
                 </td>
                 <td><%= status_label user.status %></td>
                 <td>
-                  <%= link_to '檢視', {:controller => 'users', :action => 'index'}, class:'btn btn-xs btn-info' %>
+                  <%= link_to '檢視', user_path(user), class:'btn btn-xs btn-info' %>
                   <%= link_to '編輯', {:controller => 'users', :action => 'index'}, class:'btn btn-xs btn-success' %>
                 </td>
               </tr>
