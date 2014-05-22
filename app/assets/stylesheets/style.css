@@ -5725,3 +5725,9 @@ right: -1px;
 #main-content {
     font-size: 16px;
 }
+
+ul.amounts li.grand-total-2 {
+    background: #59ACE2;
+    color: #FFF;
+    font-weight: bold;
+}

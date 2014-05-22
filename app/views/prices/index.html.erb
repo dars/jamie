@@ -1,0 +1,45 @@
+<table class="table table-invoice">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th class="text-center">版權商</th>
+    <th class="text-center">次數</th>
+    <th class="text-center">金額</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @count_price = 0 %>
+  <% @licensees.each_with_index do |item, index| %>
+    <tr>
+      <td><%= index+1 %></td>
+      <td><%= item.name %></td>
+      <td class="text-right"><%= @play_times_ar[item.id] %></td>
+      <td class="text-right"><%= number_to_currency(@play_times_ar[item.id]*@unit_price, precision:0) %></td>
+    </tr>
+    <% @count_price += @play_times_ar[item.id]*@unit_price %>
+  <% end %>
+  </tbody>
+</table>
+
+<div class="row">
+  <!--<div class="col-md-8 col-xs-7 payment-method">-->
+  <!--<h4>Payment Method</h4>-->
+
+  <!--<p>1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>-->
+
+  <!--<p>2. Pellentesque tincidunt pulvinar magna quis rhoncus.</p>-->
+
+  <!--<p>3. Cras rhoncus risus vitae congue commodo.</p>-->
+  <!--<br>-->
+
+  <!--<h3 class="inv-label itatic">Thank you for your business</h3>-->
+  <!--</div>-->
+  <div class="col-md-4 col-xs-5 invoice-block pull-right">
+    <ul class="unstyled amounts">
+      <li>當月基數： $<%= @base %> </li>
+      <li>總點唱次數: <%= @times.count %></li>
+      <li class="grand-total-2">總水庫： <%= number_to_currency(@total_price, precision:0) %> </li>
+      <li class="grand-total">實撥金額： <%= number_to_currency(@count_price, precision:0) %> </li>
+    </ul>
+  </div>
+</div>

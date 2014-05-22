@@ -1,14 +1,13 @@
 Rails.application.routes.draw do
+  root 'devices#index'
+
+  get 'prices/index'
   get 'playlog/index'
-
   resources :dealers
-
   get '/login' => 'session#new'
   post '/login' => 'session#create'
   delete '/logout' => 'session#destroy'
   resources :users
-
-  root 'devices#index'
   get '/devices/device_report'
   post '/devices/addTransaction'
   delete '/devices/deleTransaction/:id' => 'devices#deleTransaction', :as => 'devices_deleTransaction'
