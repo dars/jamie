@@ -22,8 +22,10 @@ class PricesController < ApplicationController
 
     # 計算每家版權商點撥次數
     @times.each do |t|
-      if (@play_times_ar[t.song.licensee_id])
-        @play_times_ar[t.song.licensee_id] += 1
+      if(!t.song.nil?)
+        if (@play_times_ar[t.song.licensee_id])
+          @play_times_ar[t.song.licensee_id] += 1
+        end
       end
     end
 
