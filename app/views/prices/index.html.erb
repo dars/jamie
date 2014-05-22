@@ -36,7 +36,7 @@
   <!--</div>-->
   <div class="col-md-4 col-xs-5 invoice-block pull-right">
     <ul class="unstyled amounts">
-      <li>當月基數： $<%= @base %> </li>
+      <li>當月基數： <span class="badge bg-primary">$<%= @base %></span></li>
       <li>總點唱次數: <%= @times.count %></li>
       <li class="grand-total-2">總水庫： <%= number_to_currency(@total_price, precision:0) %> </li>
       <li class="grand-total">實撥金額： <%= number_to_currency(@count_price, precision:0) %> </li>

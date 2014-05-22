@@ -1,0 +1,30 @@
+<div class="right-sidebar">
+  <div class="right-stat-bar" tabindex="5001" style="overflow: hidden; outline: none;">
+    <ul class="right-side-accordion">
+      <li class="widget-collapsible">
+        <a href="#" class="head widget-head purple-bg active">
+          <span class="pull-left"> 熱門點播 (5)</span>
+        </a>
+        <ul class="widget-container">
+          <li>
+            <% @hots.each do |s| %>
+              <div class="prog-row">
+                <div class="user-thumb rsn-activity">
+                  <i class="fa fa-music"></i>
+                </div>
+                <div class="rsn-details ">
+                  <p class="text-muted">
+                    <%= s.song.singer1.SingerNameT if(s.song.SingerIndex1) %>
+                  </p>
+                  <p>
+                    <%= [s.songNumberID].pack('l').unpack('H*')[0].scan(/[0-9a-z]{2}/i).reverse.join[3..10] %> <%= s.song.SongNameT %>
+                  </p>
+                </div>
+              </div>
+            <% end %>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
