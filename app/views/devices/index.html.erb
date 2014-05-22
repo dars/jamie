@@ -23,7 +23,7 @@
                 <td><%= device.SerialNumber %></td>
                 <td><%= device.cus_name %></td>
                 <td><%= device.cus_tel %></td>
-                <td><%= device.dealer.name if(device.dealer_id) %></td>
+                <td><%= device.dealer.name unless device.dealer.nil? %></td>
                 <td><%= device_status_label device.IsCanLogin %></td>
                 <td>
                     <%= link_to '顯示', device, class:'btn btn-xs btn-info' %>
