@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <th> 經銷商</th>
-            <td> <%= @device.dealer.name if(@device.dealer_id) %></td>
+            <td> <%= @device.dealer.name unless @device.dealer.nil? %></td>
           </tr>
           <tr>
             <th> 狀態</th>
