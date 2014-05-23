@@ -32,7 +32,7 @@
           <tbody>
           <% @songs.each do |song| %>
             <tr>
-              <td><%= song.human_song_number %></td>
+              <td><%= trans_song_number song.SongNumber %></td>
               <td><%= song.SongNameT %></td>
               <td><%= link_to song.singer1.SingerNameT, '/songs?singer='+song.singer1.SingerNameT %><%= ' / '+song.singer2.SingerNameT if (song.singer2) %></td>
               <td><%= song.phylum.name %></td>

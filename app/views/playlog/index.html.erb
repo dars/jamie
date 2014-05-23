@@ -12,7 +12,7 @@
   <tr>
     <td><%= index+1 %></td>
     <td>
-      <span class="badge bg-info"><%= [item.songNumberID].pack('l').unpack('H*')[0].scan(/[0-9a-z]{2}/i).reverse.join[3..10] %></span>
+      <span class="badge bg-info"><%= trans_song_number item.songNumberID %></span>
       <%= item.song.SongNameT unless item.song.nil? %></td>
     <td class="text-center"><%= item.count %></td>
     <% times += item.count %>

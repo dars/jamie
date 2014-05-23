@@ -17,7 +17,7 @@
                     <%= s.song.singer1.SingerNameT unless s.song.nil? or s.song.SingerIndex1.nil? %>
                   </p>
                   <p>
-                    <%= [s.songNumberID].pack('l').unpack('H*')[0].scan(/[0-9a-z]{2}/i).reverse.join[3..10] %>
+                    <%= trans_song_number s.songNumberID %>
                     <%= s.song.SongNameT unless s.song.nil? %>
                   </p>
                 </div>
