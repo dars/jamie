@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
         @date2 = target_date
       end
     else
-      return -1
+      return 0
     end
     return (@date2 - @date1 + 1).to_i
   end

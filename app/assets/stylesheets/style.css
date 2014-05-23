@@ -5731,3 +5731,6 @@ ul.amounts li.grand-total-2 {
     color: #FFF;
     font-weight: bold;
 }
+tr.has_days{
+    color: #520f00;
+}

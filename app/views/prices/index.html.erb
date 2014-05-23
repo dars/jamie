@@ -43,3 +43,44 @@
     </ul>
   </div>
 </div>
+
+<% if(is_admin? or is_staff?) %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= form_tag '/devices/device_report', method: :get, class:'form-inline', role:'form' %>
+      <div class="form-group">
+        數據列表
+      </div>
+    </div>
+  </div>
+  <table class="table table-invoice">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>機器序號</th>
+      <th class="text-center">貢獻天數</th>
+      <th class="text-right">金額</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% price_count = 0 %>
+    <% @items.each_with_index do |item, index| %>
+      <tr<%= " class=has_days" if item['days']>0 %>>
+        <td><%= index+1 %></td>
+        <td><%= item['serial'] %></td>
+        <td class="text-center"><%= item['days'] %></td>
+        <td class="text-right"><%= item['price'] %></td>
+      </tr>
+      <% price_count += item['price'] %>
+    <% end %>
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="col-md-4 col-xs-5 invoice-block pull-right">
+      <ul class="unstyled amounts">
+        <li class="grand-total-2">總金額：<%= number_to_currency(price_count, presence:1) %> </li>
+        <li class="grand-total">每次點播可得： <%= number_to_currency((price_count/@times.count), presence:0) %> </li>
+      </ul>
+    </div>
+  </div>
+<% end %>

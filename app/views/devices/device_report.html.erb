@@ -83,7 +83,7 @@
       </thead>
       <tbody>
       <% @items.each_with_index do |item, index| %>
-      <tr>
+      <tr<%= " class=has_days" if item['days']>0 %>>
         <td><%= index+1 %></td>
         <td><%= item['serial'] %></td>
         <td class="text-center"><%= item['days'] %></td>

@@ -35,13 +35,21 @@ class PricesController < ApplicationController
     # 計算每台機器的貢獻度
     @total_price_tmp = 0
     @total_count = 0
+    @items = []
     @devices.each do |device|
       days = alive_days device.ID, d
+      item = {
+        'serial' => device.SerialNumber,
+        'days' => days,
+        'price' => 0
+      }
       if (days > 0)
         @total_price_tmp += days*@base
+        item['price'] = (days*@base).round(1)
         # 該月有貢獻機器
         @total_count += 1
       end
+      @items.push item
     end
 
     # 總金額無條件捨去小數位
