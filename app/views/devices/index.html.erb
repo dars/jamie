@@ -34,8 +34,9 @@
             <% end %>
           </tbody>
         </table>
-        <%= link_to '新增機器', new_device_path, class:'btn btn-default' %>
+        <%= will_paginate @devices %>
       </div>
     </section>
   </div>
 </div>
+<%= link_to '新增機器', new_device_path, class:'btn btn-default' %>

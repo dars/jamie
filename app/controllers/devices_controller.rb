@@ -6,7 +6,7 @@ class DevicesController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:deleTransaction]
 
   def index
-    @devices = Device.all
+    @devices = Device.all.page(params[:page])
   end
 
   def show
