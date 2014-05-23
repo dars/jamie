@@ -55,6 +55,7 @@ class DevicesController < ApplicationController
     @dealers = User.where('role=?', 'dealer')
     @total_count = 0
     @total_price = 0
+    @items = []
     if (is_dealer?)
       dealer_id = current_user.id
     elsif(params[:dealer])
@@ -64,22 +65,30 @@ class DevicesController < ApplicationController
       # 找到經銷商
       @dealer = User.find(dealer_id)
       # 找到相關機器
-      @devices = Device.select('ID').where('dealer_id=?', dealer_id)
+      @devices = Device.select('ID', 'SerialNumber', 'dealer_id').where('dealer_id=?', dealer_id)
       # 該月總天數
       @base_days = Time.days_in_month(Date.today.month)
 
       @devices.each do |device|
         days = alive_days device.ID, Date.today
+        item = {
+          'days' => days,
+          'serial' => device.SerialNumber,
+          'dealer_id' => device.dealer_id
+        }
         if (days > 0)
           if (days == @base_days)
             # 滿該月總天數以 42 計算
             @total_price += 42
+            item['price'] = 42
           else
             # 不滿該月總天數以 (42/該月總天數)x貢獻天數
-            @total_price += ((42/@base_days)*days)
+            @total_price += ((42.00/@base_days)*days).floor
+            item['price'] = ((42.00/@base_days)*days).floor
           end
           # 該月有貢獻機器
           @total_count += 1
+          @items.push item
         end
       end
     end
