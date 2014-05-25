@@ -20,7 +20,7 @@
             <td><%= log.DateTime %></td>
             <td><%= log.RemoteIP %></td>
             <td><%= log.DeviceSN %></td>
-            <td><%= trans_status log.CmdType %></td>
+            <td><%= trans_status log.CmdType %><%= raw("&nbsp;<span class='badge bg-inverse'>"+log.SongNumber+'</span>') unless log.SongNumber.nil? %></td>
           </tr>
           <% end %>
         </tbody>
