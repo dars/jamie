@@ -18,10 +18,11 @@
               </div>
             <% end %>
 
-            <div class="form-group">
+            <div class="form-group" id="serialNumber-form-group">
               <%= f.label :SerialNumber, '機器序號：', class:'control-label col-lg-3' %>
               <div class="col-lg-6">
-                <%= f.text_field :SerialNumber, class:'form-control'  %>
+                <%= f.text_field :SerialNumber, class:'form-control', id:'serialNumber' %>
+                <p class="help-block" id="serialNumber-help-block"></p>
               </div>
             </div>
             <div class="form-group">

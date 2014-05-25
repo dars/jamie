@@ -22,5 +22,6 @@
 //= require sparkline/jquery.sparkline
 //= require typeahead.bundle
 //= require scripts
+//= require devices
 //= require users
 //= require songs
