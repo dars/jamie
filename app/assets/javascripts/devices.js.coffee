@@ -12,8 +12,9 @@ $('#serialNumber').blur ->
 
 $('#start_date').blur ->
   sdate = $(this).val()
-  if($('#type_combobox').val() == '1')
-    $('#end_date').val moment(sdate).add('y', 1).format('YYYY-MM-DD')
-  else
-    $('#end_date').val moment(sdate).add('M', 1).format('YYYY-MM-DD')
+  if(moment(sdate).isValid())
+    if($('#type_combobox').val() == '1')
+      $('#end_date').val moment(sdate).add('y', 1).format('YYYY-MM-DD')
+    else
+     $('#end_date').val moment(sdate).add('M', 1).format('YYYY-MM-DD')
   return
