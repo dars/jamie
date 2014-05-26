@@ -21,6 +21,7 @@
 //= require jquery.nicescroll
 //= require sparkline/jquery.sparkline
 //= require typeahead.bundle
+//= require moment.min
 //= require scripts
 //= require devices
 //= require users
