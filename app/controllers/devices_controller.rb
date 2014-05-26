@@ -6,7 +6,14 @@ class DevicesController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:deleTransaction]
 
   def index
-    @devices = Device.all.order('SerialNumber').page(params[:page])
+    @devices = Device.all
+    if params[:serial] and params[:serial] != ''
+      @devices = @devices.where('SerialNumber=?', params[:serial])
+    end
+    if params[:cus_name] and params[:cus_name] != ''
+      @devices = @devices.where('cus_name=?', params[:cus_name])
+    end
+    @devices = @devices.order('SerialNumber').page(params[:page])
   end
 
   def show
@@ -128,6 +135,6 @@ class DevicesController < ApplicationController
     end
 
     def device_params
-      params.require(:device).permit(:ModelID, :SerialNumber, :FolderNameLocal, :FolderNameOnline, :FolderNameUpdate, :IsCanLogin, :SongServerGroupID, :ProducersID, :PublisherID, :AgentsID, :ConsumerID, :Note, :cus_name, :cus_uuid, :cus_birthday, :cus_tel, :cus_apply_at, :cus_address, :dealer_id)
+      params.require(:device).permit(:ModelID, :SerialNumber, :FolderNameLocal, :FolderNameOnline, :FolderNameUpdate, :IsCanLogin, :SongServerGroupID, :ProducersID, :PublisherID, :AgentsID, :ConsumerID, :Note, :cus_name, :cus_uuid, :cus_birthday, :cus_tel, :cus_apply_at, :cus_address, :dealer_id, :demo)
     end
 end

@@ -2,6 +2,22 @@
 <div class="row">
   <div class="col-sm-12">
     <section class="panel">
+      <header class="panel-heading">快速過濾
+        <span class="tools pull-right">
+          <a href="javascript:;" class="fa fa-chevron-up"></a>
+        </span>
+      </header>
+      <div class="panel-body" style="display:none">
+        <%= form_tag('/devices', method: :get, class:'form-inline') do %>
+          <%= text_field_tag 'serial', params[:serial], class:'form-control round-input', placeholder:'機器序號' %>
+          <%= text_field_tag 'cus_name', params[:cus_name], class:'form-control round-input', placeholder:'承租人姓名' %>
+          <%= submit_tag '送出', class:'btn btn-round btn-success' %>
+        <% end %>
+      </div>
+    </section>
+  </div>
+  <div class="col-sm-12">
+    <section class="panel">
       <header class="panel-heading">
         機器資料
       </header>

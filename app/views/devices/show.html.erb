@@ -9,7 +9,7 @@
           <tbody>
           <tr>
             <th> 機器序號</th>
-            <td> <%= @device.SerialNumber %></td>
+            <td> <%= @device.SerialNumber %><%= raw("&nbsp;<span class='label label-info'>公關用</span>") unless @device.demo.nil? %></td>
           </tr>
           <tr>
             <th> 承租人姓名</th>
