@@ -117,17 +117,15 @@
           <thead>
           <tr>
             <th>類型</th>
-            <th>起始日</th>
-            <th>結束日</th>
+            <th>起訖日</th>
             <th></th>
           </tr>
           </thead>
           <tbody>
           <% @transaction.each do |t| %>
           <tr>
-            <td><%= t.kind==1?'年約':'月約' %></td>
-            <td><%= t.start_date %></td>
-            <td><%= t.end_date %></td>
+            <td><%= transaction_kind t.kind %></td>
+            <td><%= t.start_date %> ~ <%= t.end_date %></td>
             <td><%= link_to '刪除', devices_deleTransaction_path(t), method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger btn-xs' %></td>
           </tr>
           <% end %>

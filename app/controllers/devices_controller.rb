@@ -25,7 +25,7 @@ class DevicesController < ApplicationController
   end
 
   def edit
-    @transaction = Transaction.where('device_id=?', @device.id)
+    @transaction = Transaction.where('device_id=?', @device.id).order('created_at desc')
   end
 
   def create
