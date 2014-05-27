@@ -25,7 +25,7 @@ class DevicesController < ApplicationController
   end
 
   def edit
-    @transaction = Transation.where('device_id=?', @device.id)
+    @transaction = Transaction.where('device_id=?', @device.id)
   end
 
   def create
@@ -102,11 +102,11 @@ class DevicesController < ApplicationController
   end
 
   def addTransaction
-    @trans = Transation.new(
+    @trans = Transaction.new(
         :device_id => params[:device_id],
         :start_date => params[:start_date],
         :end_date => params[:end_date],
-        :type => params[:type]
+        :kind => params[:type]
     )
     @trans.save
     @device = Device.find(params[:device_id])
@@ -115,7 +115,7 @@ class DevicesController < ApplicationController
   end
 
   def deleTransaction
-    @transaction = Transation.find(params[:id])
+    @transaction = Transaction.find(params[:id])
     if @transaction
       @device = Device.find(@transaction.device_id)
       @transaction.destroy

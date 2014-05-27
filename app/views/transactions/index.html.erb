@@ -2,30 +2,30 @@
   <div class="col-sm-12">
     <section class="panel">
       <header class="panel-heading">
-        General Table
+        交易記錄清單
       </header>
       <div class="panel-body">
         <table class="table  table-hover general-table">
           <thead>
           <tr>
             <th>時間</th>
-            <th>客戶端 IP</th>
             <th>機器序號</th>
-            <th>事件</th>
+            <th>租約</th>
+            <th>時間</th>
           </tr>
           </thead>
           <tbody>
-          <% @logs.each do |log| %>
+          <% @items.each do |item| %>
             <tr>
-              <td><%= log.DateTime %></td>
-              <td><%= log.RemoteIP %></td>
-              <td><%= log.DeviceSN %></td>
-              <td><%= trans_status log.CmdType %><%= raw("&nbsp;<span class='badge bg-inverse'>"+log.SongNumber+'</span>') unless log.SongNumber.nil? %></td>
+              <td><%= item.created_at.strftime('%Y-%m-%d %R') %></td>
+              <td><%= item.device.SerialNumber %></td>
+              <td><%= transaction_kind item.kind %></td>
+              <td><%= item.start_date %> ~ <%= item.end_date %></td>
             </tr>
           <% end %>
           </tbody>
         </table>
-        <%= will_paginate @logs %>
+        <%= will_paginate @items %>
       </div>
     </section>
   </div>

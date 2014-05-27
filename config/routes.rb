@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'transactions/index'
+
   root 'devices#index'
 
   get 'prices/index'
