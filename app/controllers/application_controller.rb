@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   def alive_days (device_id, target_date)
     s_date = target_date.year.to_s+'-'+target_date.strftime('%m')+'-01'
     e_date = target_date.year.to_s+'-'+target_date.strftime('%m')+'-'+Time.days_in_month(target_date.month).to_s
-    @transaction = Transation.where('device_id=?', device_id).where('(? between start_date and end_date) or (? between start_date and end_date)', s_date, e_date).first
+    @transaction = Transaction.where('device_id=?', device_id).where('(? between start_date and end_date) or (? between start_date and end_date)', s_date, e_date).first
     if(@transaction)
       if (@transaction.start_date < Date.new(target_date.year, target_date.month, 1))
         @date1 = Date.new(target_date.year, target_date.month, 1)

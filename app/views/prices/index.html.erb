@@ -79,7 +79,7 @@
     <div class="col-md-4 col-xs-5 invoice-block pull-right">
       <ul class="unstyled amounts">
         <li class="grand-total-2">總金額：<%= number_to_currency(price_count, presence:1) %> </li>
-        <li class="grand-total">每次點播可得： $<%= (price_count/@times.count).floor %> </li>
+        <li class="grand-total">每次點播可得： $<%= (@times.count>0)?((price_count/@times.count).floor):0 %> </li>
       </ul>
     </div>
   </div>

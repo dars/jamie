@@ -56,7 +56,7 @@ class PricesController < ApplicationController
     @total_price = @total_price_tmp.floor
 
     # 每次點撥可得
-    @unit_price = @total_price/@times.count
+      @unit_price = (@times.count>0)?(@total_price/@times.count):0
 
   end
 end
