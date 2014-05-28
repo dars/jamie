@@ -11,6 +11,7 @@
         <%= form_tag('/devices', method: :get, class:'form-inline') do %>
           <%= text_field_tag 'serial', params[:serial], class:'form-control round-input', placeholder:'機器序號' %>
           <%= text_field_tag 'cus_name', params[:cus_name], class:'form-control round-input', placeholder:'承租人姓名' %>
+          <%= select_tag 'demo', options_for_select([['全選', 0],['公關機', 1],['非公關機', 2]], params[:demo]) %>
           <%= submit_tag '送出', class:'btn btn-round btn-success' %>
         <% end %>
       </div>

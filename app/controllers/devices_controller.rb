@@ -13,6 +13,12 @@ class DevicesController < ApplicationController
     if params[:cus_name] and params[:cus_name] != ''
       @devices = @devices.where('cus_name=?', params[:cus_name])
     end
+    if params[:demo] == '1'
+      @devices = @devices.where('demo=?', true)
+    end
+    if params[:demo] == '2'
+      @devices = @devices.where('demo != ?', true)
+    end
     @devices = @devices.order('SerialNumber').page(params[:page])
   end
 
