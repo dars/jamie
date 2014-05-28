@@ -118,7 +118,7 @@ class DevicesController < ApplicationController
     @transaction = Transaction.find(params[:id])
     if @transaction
       @device = Device.find(@transaction.device_id)
-      @transaction.destroy
+      @transaction.soft_delete
       set_flash 'success', 'Transaction was successfully destroyed.'
       redirect_to edit_device_path(@device)
     else
