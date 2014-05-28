@@ -17,3 +17,4 @@
 .powenv
 
 config/database.yml
+public/files/*
