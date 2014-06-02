@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'transactions/index'
-
+  match 'devices/readXls' => 'devices#readXls', via: [:get, :post]
   root 'devices#index'
 
   get 'prices/index'

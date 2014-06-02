@@ -35,6 +35,13 @@ gem 'bcrypt'
 gem 'tzinfo-data', platforms: [:mingw, :mswin , :x64_mingw]
 gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
 gem "soft_deletion"
+gem "better_errors", group: :development
+gem "binding_of_caller", group: :development
+gem "rspec-rails", group: [:development, :test]
+gem "capybara", group: :test
+gem "factory_girl_rails", group: :test
+gem 'spreadsheet'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

@@ -1,0 +1,4 @@
+<%= form_tag '/devices/readXls', :multipart=>true do %>
+  <%= file_field_tag 'xlsfile' %>
+  <%= submit_tag '送出' %>
+<% end %>
