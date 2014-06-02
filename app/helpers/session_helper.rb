@@ -46,9 +46,9 @@ module SessionHelper
     end
   end
 
-  def is_user?
+  def is_licensees?
     is_signed?
-    if (current_user.role == 'user')
+    if (current_user.role == 'licensees')
       return true
     else
       return false
