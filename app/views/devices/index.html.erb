@@ -10,8 +10,7 @@
       <div class="panel-body" style="display:none">
         <%= form_tag('/devices', method: :get, class:'form-inline') do %>
           <%= text_field_tag 'serial', params[:serial], class:'form-control round-input', placeholder:'機器序號' %>
-          <%= text_field_tag 'cus_name', params[:cus_name], class:'form-control round-input', placeholder:'承租人姓名' %>
-          <%= select_tag 'demo', options_for_select([['全選', 0],['公關機', 1],['非公關機', 2]], params[:demo]) %>
+          <%= select_tag 'demo', options_for_select([['全選', 0],['公關機', 1],['非公關機', 2]], params[:demo]), class:'form-control' %>
           <%= submit_tag '送出', class:'btn btn-round btn-success' %>
         <% end %>
       </div>
@@ -27,8 +26,6 @@
           <thead>
             <tr>
               <th>機器序號</th>
-              <th>承租人</th>
-              <th>電話</th>
               <th>經銷商</th>
               <th>狀態</th>
               <th>&nbsp;</th>
@@ -38,8 +35,6 @@
             <% @devices.each do |device| %>
               <tr>
                 <td><%= device.SerialNumber %></td>
-                <td><%= device.cus_name %></td>
-                <td><%= device.cus_tel %></td>
                 <td><%= show_dealer device %></td>
                 <td><%= device_status_label device.IsCanLogin %></td>
                 <td>

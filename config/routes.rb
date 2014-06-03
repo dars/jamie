@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   get '/songs/getParty' => 'songs#getParty'
   get '/singers/get' => 'singers#get'
+  resources :leases
   resources :singers
   resources :songs
   resources :licensees

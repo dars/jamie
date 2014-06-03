@@ -9,31 +9,7 @@
           <tbody>
           <tr>
             <th> 機器序號</th>
-            <td> <%= @device.SerialNumber %><%= raw("&nbsp;<span class='label label-info'>公關用</span>") unless @device.demo.nil? %></td>
-          </tr>
-          <tr>
-            <th> 承租人姓名</th>
-            <td> <%= @device.cus_name %></td>
-          </tr>
-          <tr>
-            <th> 身份證字號</th>
-            <td> <%= @device.cus_uuid %></td>
-          </tr>
-          <tr>
-            <th> 生日</th>
-            <td> <%= @device.cus_birthday %></td>
-          </tr>
-          <tr>
-            <th> 電話</th>
-            <td> <%= @device.cus_tel %></td>
-          </tr>
-          <tr>
-            <th> 申辦日期</th>
-            <td> <%= @device.cus_apply_at %></td>
-          </tr>
-          <tr>
-            <th> 地址</th>
-            <td> <%= @device.cus_address %></td>
+            <td> <%= @device.SerialNumber %></td>
           </tr>
           <tr>
             <th> 經銷商</th>

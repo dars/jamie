@@ -1,0 +1,109 @@
+<div class="row">
+  <div class="col-lg-12">
+    <section class="panel">
+      <header class="panel-heading">
+        Basic validations
+      </header>
+      <div class="panel-body">
+        <div class="form">
+          <%= form_for @lease, html:{role: 'form', class: 'form-horizontal'} do |f| %>
+            <% if @lease.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@lease.errors.count, "error") %> prohibited this user from being saved:</h2>
+                <ul>
+                  <% @lease.errors.full_message.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="form-group">
+              <%= f.label :name, '承租人姓名：', class:'control-label col-lg-3' %>
+              <div class="col-lg-6">
+                <%= f.text_field :name, class:'form-control' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :uuid, '身份證字號：', class:'control-label col-lg-3' %>
+              <div class="col-lg-6">
+                <%= f.text_field :uuid, class:'form-control', maxlength:10 %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :birthday, '生日：', class:'control-label col-lg-3' %>
+              <div class="col-lg-6">
+                <%= f.date_field :birthday, class:'form-control', maxlength:10 %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :tel, '電話：', class:'control-label col-lg-3' %>
+              <div class="col-lg-6">
+                <%= f.text_field :tel, class:'form-control' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :apply_at, '申辦日期：', class:'control-label col-lg-3' %>
+              <div class="col-lg-6">
+                <%= f.text_field :apply_at, class:'form-control', maxlength:10 %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :address, '地址：', class:'control-label col-lg-3' %>
+              <div class="col-lg-6">
+                <%= f.text_field :address, class:'form-control' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-6">
+                <%= f.submit "Save", class:'btn btn-primary' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </section>
+  </div>
+  <% if @lease.id %>
+    <div class="col-sm-12">
+      <section class="panel">
+        <header class="panel-heading">租約記錄</header>
+        <div class="panel-body">
+          <%= form_tag('/devices/addTransaction', method: :post, class:'form-inline') do %>
+            <div class="form-group">
+              <label for="">新增租約：</label>
+            </div>
+            <div class="form-group">
+              <%= select_tag 'type', options_for_select([['年約', 1], ['月約', 2]]), class:'form-control', id:'type_combobox' %>
+            </div>
+            <div class="form-group">
+              <%= date_field_tag 'start_date', '', class:'form-control', maxlength:10, id:'start_date', placeholder:'開始日期' %>
+            </div>
+            <div class="form-group">
+              <%= date_field_tag 'end_date', '',class:'form-control', maxlength:10, id:'end_date', placeholder: '結束日期' %>
+            </div>
+            <%= hidden_field_tag 'device_id', @device.id %>
+            <%= submit_tag '送出', class:'btn btn-info' %>
+          <% end %>
+          <table class="table  table-hover general-table">
+            <thead>
+            <tr>
+              <th>類型</th>
+              <th>起訖日</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @transaction.each do |t| %>
+              <tr>
+                <td><%= transaction_kind t.kind %></td>
+                <td><%= t.start_date %> ~ <%= t.end_date %></td>
+                <td><%= link_to '刪除', devices_deleTransaction_path(t), method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger btn-xs' %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  <% end %>
+</div>

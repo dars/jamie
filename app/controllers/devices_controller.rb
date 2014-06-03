@@ -10,9 +10,6 @@ class DevicesController < ApplicationController
     if params[:serial] and params[:serial] != ''
       @devices = @devices.where('SerialNumber=?', params[:serial])
     end
-    if params[:cus_name] and params[:cus_name] != ''
-      @devices = @devices.where('cus_name=?', params[:cus_name])
-    end
     if params[:demo] == '1'
       @devices = @devices.where('demo=?', true)
     end
@@ -138,26 +135,11 @@ class DevicesController < ApplicationController
       ufile = params[:xlsfile]
       xlsfile = Spreadsheet.open ufile.tempfile.path
       sheet = xlsfile.worksheet 0
-      raw = "INSERT INTO `device` (`ModelID`, `SerialNumber`, `FolderNameLocal`, `FolderNameOnline`, `FolderNameUpdate`, `IsCanLogin`, `SongServerGroupID`, `ProducersID`, `PublisherID`, `AgentsID`, `ConsumerID`, `Note`, `cus_name`, `cus_uuid`, `cus_birthday`, `cus_tel`, `cus_apply_at`, `cus_address`, `dealer_id`, `demo`) VALUES"
+      raw = "INSERT INTO `device` (`ModelID`, `SerialNumber`, `FolderNameLocal`, `FolderNameOnline`, `FolderNameUpdate`, `IsCanLogin`, `SongServerGroupID`, `ProducersID`, `PublisherID`, `AgentsID`, `ConsumerID`, `Note`, `dealer_id`, `demo`) VALUES"
       sheet.each do |row|
         row.each do |t|
-          raw += "(0, 'HC000#{t.to_s}', '', '', '', 1, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),<br>"
+          raw += "(0, 'HC000#{t.to_s}', '', '', '', 1, 0, 0, 0, 0, 0, NULL, NULL, 1),<br>"
         end
-        raw += '<br>'
-        # @visa_form = VisaForm.new(
-        #     :family_name => row[3],
-        #     :first_name => row[4],
-        #     :passport_name => row[5],
-        #     :gender => row[6][0],
-        #     :birthday => row[7],
-        #     :passport_number => row[13],
-        #     :issue_date => row[17],
-        #     :expiry_date => row[18],
-        #     :entry_date => row[19],
-        #     :proposed_addr => row[22],
-        #     :group_id => @group.id
-        # )
-        # @visa_form.save
       end
       render :text => raw
     end
@@ -172,6 +154,6 @@ class DevicesController < ApplicationController
     end
 
     def device_params
-      params.require(:device).permit(:ModelID, :SerialNumber, :FolderNameLocal, :FolderNameOnline, :FolderNameUpdate, :IsCanLogin, :SongServerGroupID, :ProducersID, :PublisherID, :AgentsID, :ConsumerID, :Note, :cus_name, :cus_uuid, :cus_birthday, :cus_tel, :cus_apply_at, :cus_address, :dealer_id, :demo)
+      params.require(:device).permit(:ModelID, :SerialNumber, :FolderNameLocal, :FolderNameOnline, :FolderNameUpdate, :IsCanLogin, :SongServerGroupID, :ProducersID, :PublisherID, :AgentsID, :ConsumerID, :Note, :dealer_id, :demo)
     end
 end
