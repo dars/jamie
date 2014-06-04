@@ -30,9 +30,8 @@ class LicenseesController < ApplicationController
 
     respond_to do |format|
       if @licensee.save
-        set_flash 'success', 'Licensee was successfully created.'
         format.html { redirect_to @licensee }
-        format.json { render :show, status: :created, location: @licensee }
+        format.json { render :show, status: :created, location: @licensee, notice => 'Licensee was successfully created.' }
       else
         format.html { render :new }
         format.json { render json: @licensee.errors, status: :unprocessable_entity }
@@ -45,9 +44,8 @@ class LicenseesController < ApplicationController
   def update
     respond_to do |format|
       if @licensee.update(licensee_params)
-        set_flash 'success', 'Licensee was successfully updated.'
         format.html { redirect_to @licensee }
-        format.json { render :show, status: :ok, location: @licensee }
+        format.json { render :show, status: :ok, location: @licensee, notice => 'Licensee was successfully updated.' }
       else
         format.html { render :edit }
         format.json { render json: @licensee.errors, status: :unprocessable_entity }
@@ -60,8 +58,7 @@ class LicenseesController < ApplicationController
   def destroy
     @licensee.destroy
     respond_to do |format|
-      set_flash 'success', 'Licensee was successfully destroyed.'
-      format.html { redirect_to licensees_url }
+      format.html { redirect_to licensees_url, notice => 'Licensee was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

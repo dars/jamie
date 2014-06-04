@@ -12,25 +12,25 @@ class SessionController < ApplicationController
       @user.last_sign_in_at = Time.now
       @user.sign_in_count = @user.sign_in_count+1
       @user.save
-      set_flash 'success', '登入成功'
+
       case (@user.role)
         when 'admin'
-          redirect_to devices_path
+          redirect_to devices_path, :notice => '登入成功'
         when 'staff'
-          redirect_to devices_path
+          redirect_to devices_path, :notice => '登入成功'
         when 'dealer'
-          redirect_to devices_device_report_path
-        when 'user'
-          redirect_to playlog_index_path
+          redirect_to devices_device_report_path, :notice => '登入成功'
+        when 'licensees'
+          redirect_to playlog_index_path, :notice => '登入成功'
       end
     else
-      set_flash 'danger', '登入失敗，請確認您的資料', true
+      flash.now[:alert] = '登入失敗，請確認您的資料'
       render :new
     end
   end
 
   def destroy
     sign_out
-    redirect_to login_path
+    redirect_to login_path, :notice => '您已登出'
   end
 end

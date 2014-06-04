@@ -36,8 +36,7 @@ class DevicesController < ApplicationController
 
     respond_to do |format|
       if @device.save
-        set_flash 'success', 'Device was successfully created.'
-        format.html {redirect_to @device }
+        format.html {redirect_to @device, notice => 'Device was successfully created.' }
       else
         format.html {render :new}
       end
@@ -47,8 +46,7 @@ class DevicesController < ApplicationController
   def update
     respond_to do |format|
       if @device.update(device_params)
-        set_flash 'success', 'Device was successfully updated.'
-        format.html { redirect_to @device }
+        format.html { redirect_to @device, notice => 'Device was successfully updated.' }
         format.json { render :show, status: :ok, location: @device }
       else
         format.html { render :edit }
@@ -113,8 +111,7 @@ class DevicesController < ApplicationController
     )
     @trans.save
     @device = Device.find(params[:device_id])
-    set_flash 'success', 'Transaction was successfully created.'
-    redirect_to edit_device_path(@device)
+    redirect_to edit_device_path(@device), :notice => 'Transaction was successfully created.'
   end
 
   def deleTransaction
@@ -122,8 +119,7 @@ class DevicesController < ApplicationController
     if @transaction
       @device = Device.find(@transaction.device_id)
       @transaction.soft_delete
-      set_flash 'success', 'Transaction was successfully destroyed.'
-      redirect_to edit_device_path(@device)
+      redirect_to edit_device_path(@device), :notice => 'Transaction was successfully destroyed.'
     else
       redirect_to device_path
     end
