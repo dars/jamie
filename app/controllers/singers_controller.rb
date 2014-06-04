@@ -42,7 +42,7 @@ class SingersController < ApplicationController
 
     respond_to do |format|
       if @singer.save
-        format.html { redirect_to @singer, notice: 'Singer was successfully created.' }
+        format.html { redirect_to @singer, :notice => 'Singer was successfully created.' }
         format.json { render :show, status: :created, location: @singer }
       else
         format.html { render :new }
@@ -56,7 +56,7 @@ class SingersController < ApplicationController
   def update
     respond_to do |format|
       if @singer.update(singer_params)
-        format.html { redirect_to @singer, notice: 'Singer was successfully updated.' }
+        format.html { redirect_to @singer, :notice => 'Singer was successfully updated.' }
         format.json { render :show, status: :ok, location: @singer }
       else
         format.html { render :edit }
@@ -70,7 +70,7 @@ class SingersController < ApplicationController
   def destroy
     @singer.destroy
     respond_to do |format|
-      format.html { redirect_to singers_url, notice: 'Singer was successfully destroyed.' }
+      format.html { redirect_to singers_url, :notice => 'Singer was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

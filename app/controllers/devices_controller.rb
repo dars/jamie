@@ -36,7 +36,7 @@ class DevicesController < ApplicationController
 
     respond_to do |format|
       if @device.save
-        format.html {redirect_to @device, notice => 'Device was successfully created.' }
+        format.html {redirect_to @device, :notice => 'Device was successfully created.' }
       else
         format.html {render :new}
       end
@@ -46,7 +46,7 @@ class DevicesController < ApplicationController
   def update
     respond_to do |format|
       if @device.update(device_params)
-        format.html { redirect_to @device, notice => 'Device was successfully updated.' }
+        format.html { redirect_to @device, :notice => 'Device was successfully updated.' }
         format.json { render :show, status: :ok, location: @device }
       else
         format.html { render :edit }
