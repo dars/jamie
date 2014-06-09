@@ -41,6 +41,7 @@ gem "rspec-rails", group: [:development, :test]
 gem "capybara", group: :test
 gem "factory_girl_rails", group: :test
 gem 'spreadsheet'
+gem 'capistrano'
 
 # Use unicorn as the app server
 # gem 'unicorn'

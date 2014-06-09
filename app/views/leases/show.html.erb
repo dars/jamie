@@ -1,4 +1,40 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_lease_path(@lease) %> |
-<%= link_to 'Back', leases_path %>
+<div class="row">
+  <div class="col-sm-12">
+    <section class="panel">
+      <header class="panel-heading">
+        用戶資料
+      </header>
+      <div class="panel-body">
+        <table class="table general-table table-striped">
+          <tbody>
+          <tr>
+            <th> 用戶名稱</th>
+            <td> <%= @lease.name %></td>
+          </tr>
+          <tr>
+            <th> 生份証字號</th>
+            <td> <%= @lease.uuid %></td>
+          </tr>
+          <tr>
+            <th> 用戶電話</th>
+            <td> <%= @lease.tel %></td>
+          </tr>
+          <tr>
+            <th> 生日</th>
+            <td> <%= @lease.birthday %></td>
+          </tr>
+          <tr>
+            <th> 地址</th>
+            <td> <%= @lease.address %></td>
+          </tr>
+          <tr>
+            <th> 生效日</th>
+            <td> <%= @lease.apply_at %></td>
+          </tr>
+          </tbody>
+        </table>
+        <%= link_to 'Back', leases_path %>
+      </div>
+    </section>
+  </div>
+</div>
