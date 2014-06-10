@@ -70,6 +70,6 @@ class LeasesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lease_params
-      params.require(:lease).permit(:name, :uuid, :birthday, :tel, :apply_at, :address)
+      params.require(:lease).permit(:name, :uuid, :birthday, :tel, :apply_at, :address, :device_id)
     end
 end

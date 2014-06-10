@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   post '/login' => 'session#create'
   delete '/logout' => 'session#destroy'
   resources :users
+
   get '/devices/device_report'
+  get '/devices/getItems'
   post '/devices/addTransaction'
   delete '/devices/deleTransaction/:id' => 'devices#deleTransaction', :as => 'devices_deleTransaction'
   get '/log/index'

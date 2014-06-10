@@ -17,6 +17,7 @@
  *= require style-responsive
  *= require font-awesome
  *= require typeahead
+ *= require icheck/green
  *= require_self
  *= require users
  */

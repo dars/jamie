@@ -5734,3 +5734,7 @@ ul.amounts li.grand-total-2 {
 tr.has_days{
     color: #520f00;
 }
+input.form-control[readonly] {
+    background-color: #DDFFF8;
+    border-color: #AFE0DB;
+}

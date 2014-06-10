@@ -21,8 +21,10 @@
 //= require jquery.nicescroll
 //= require sparkline/jquery.sparkline
 //= require typeahead.bundle
+//= require iCheck/icheck.min
 //= require moment.min
 //= require scripts
+//= require leases
 //= require devices
 //= require users
 //= require songs

@@ -141,6 +141,12 @@ class DevicesController < ApplicationController
     end
   end
 
+  # ajax 取得 devices
+  def getItems
+    @items = Device.joins(:dealer).where("SerialNumber Like ?", params[:keyword]+'%').order('SerialNumber')
+
+  end
+
   private
     def set_options
       @dealers = User.where('role=?', 'dealer')
