@@ -15,6 +15,12 @@
             <th> 經銷商</th>
             <td> <%= show_dealer @device %></td>
           </tr>
+          <% unless @device.lease.nil? %>
+          <tr>
+            <th> 用戶</th>
+            <td> <%= link_to @device.lease.name, lease_path(@device.lease) %> <i class="fa fa-external-link"></i></td>
+          </tr>
+          <% end %>
           <tr>
             <th> 狀態</th>
             <td> <%= device_status_label @device.IsCanLogin %></td>

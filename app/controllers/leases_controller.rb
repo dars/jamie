@@ -29,7 +29,7 @@ class LeasesController < ApplicationController
 
     respond_to do |format|
       if @lease.save
-        format.html { redirect_to @lease, :notice => 'Lease was successfully created.' }
+        format.html { redirect_to @lease, :notice => '用戶資料已成功建立.' }
         format.json { render :show, status: :created, location: @lease }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class LeasesController < ApplicationController
   def update
     respond_to do |format|
       if @lease.update(lease_params)
-        format.html { redirect_to @lease, :notice => 'Lease was successfully updated.' }
+        format.html { redirect_to @lease, :notice => '用戶資料已更新.' }
         format.json { render :show, status: :ok, location: @lease }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class LeasesController < ApplicationController
   def destroy
     @lease.destroy
     respond_to do |format|
-      format.html { redirect_to leases_url, :notice => 'Lease was successfully destroyed.' }
+      format.html { redirect_to leases_url, :notice => '用戶資料已刪除.' }
       format.json { head :no_content }
     end
   end

@@ -30,7 +30,7 @@
           <% unless @lease.device.nil? %>
           <tr>
             <th> 機器序號</th>
-            <td> <%= @lease.device.SerialNumber %></td>
+            <td> <%= link_to @lease.device.SerialNumber, device_path(@lease.device) %> <i class="fa fa-external-link"></i></td>
           </tr>
           <% end %>
           <tr>

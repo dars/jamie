@@ -27,6 +27,7 @@
             <th>用戶名稱</th>
             <th>電話</th>
             <th>地址</th>
+            <th>機器序號</th>
             <th>&nbsp;</th>
           </tr>
           </thead>
@@ -36,6 +37,7 @@
               <td><%= lease.name %></td>
               <td><%= lease.tel %></td>
               <td><%= lease.address %></td>
+              <td><%= link_to raw("<span class='label label-primary'>"+lease.device.SerialNumber+" <i class='fa fa-external-link'></i></span>"), device_path(lease.device) unless lease.device.nil? %></td>
               <td>
                 <%= link_to '顯示', lease, class:'btn btn-xs btn-info' %>
                 <%= link_to '修改', edit_lease_path(lease), class:'btn btn-xs btn-success' %>

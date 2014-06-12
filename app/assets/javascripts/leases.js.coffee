@@ -31,6 +31,7 @@ $('#device_serial').keyup ->
         return
 
 $('#submit_serial').click ->
-  $('#device_serial_field').val($('#serial_filter_tb input:checked')[0].value)
-  $('#device_id_field').val($('#serial_filter_tb input:checked')[0].title)
-  $('#deviceModal').modal('hide')
+  if $('#serial_filter_tb input:checked').length == 1
+    $('#device_serial_field').val($('#serial_filter_tb input:checked')[0].value)
+    $('#device_id_field').val($('#serial_filter_tb input:checked')[0].title)
+    $('#deviceModal').modal('hide')
