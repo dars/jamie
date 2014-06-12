@@ -59,6 +59,9 @@
                 <div class="input-group m-bot15">
                   <span class="input-group-addon btn-white"><i class="fa fa-hdd-o"></i></span>
                   <%= text_field_tag 'device_serial', (@lease.device.SerialNumber unless @lease.device.nil?), {:class => 'form-control has-filter', :id => 'device_serial_field', :readonly => true} %>
+                  <span class="input-group-btn">
+                    <button class="btn btn-danger" type="button" id="cancel_serial_btn"><i class="fa fa-times"></i></button>
+                  </span>
                   <%= f.hidden_field :device_id, id:'device_id_field' %>
                 </div>
               </div>

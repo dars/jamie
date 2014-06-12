@@ -35,3 +35,10 @@ $('#submit_serial').click ->
     $('#device_serial_field').val($('#serial_filter_tb input:checked')[0].value)
     $('#device_id_field').val($('#serial_filter_tb input:checked')[0].title)
     $('#deviceModal').modal('hide')
+
+$('#cancel_serial_btn').click ->
+  flag = confirm('確定刪除機器序號資料？')
+  if flag
+    $('#device_serial_field').val('')
+    $('#device_id_field').val('')
+    return
