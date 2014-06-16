@@ -5738,3 +5738,8 @@ input.form-control[readonly] {
     background-color: #DDFFF8;
     border-color: #AFE0DB;
 }
+
+.sub-panel{
+    border:1px #E9FFEE solid;
+    background: #F7F7F7;
+}

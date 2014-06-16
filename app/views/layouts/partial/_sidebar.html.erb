@@ -11,7 +11,7 @@
         <%= link_to raw('<i class="fa fa-gavel"></i><span>版權商管理</span>'), licensees_path if (is_admin? or is_staff?) %>
         <%= link_to raw('<i class="fa fa-key"></i><span>使用者管理</span>'), users_path if (is_admin?) %>
         <%= link_to raw('<i class="fa fa-money"></i><span>獎金報表</span>'), prices_index_path if (is_admin?) %>
-        <%= link_to raw('<i class="fa fa-hdd-o"></i><span>機器報表</span>'), devices_device_report_path if (is_admin? or is_staff? or is_dealer?) %>
+        <%= link_to raw('<i class="fa fa-hdd-o"></i><span>用戶報表</span>'), leases_price_report_path if (is_admin? or is_staff? or is_dealer?) %>
         <%= link_to raw('<i class="fa fa-file-text-o"></i><span>點唱記錄</span>'), controller:'playlog', action:'index' if (is_admin? || is_staff? || is_user?) %>
         <%= link_to raw('<i class="fa fa-bar-chart-o"></i><span>Log</span>'), controller:'log', action:'index' if (is_admin?) %>
       </li>

@@ -8,17 +8,17 @@
         <table class="table  table-hover general-table">
           <thead>
           <tr>
-            <th>時間</th>
-            <th>機器序號</th>
+            <th>建立時間</th>
+            <th>用戶名稱</th>
             <th>租約</th>
-            <th>時間</th>
+            <th>租約期間</th>
           </tr>
           </thead>
           <tbody>
           <% @items.each do |item| %>
             <tr>
               <td><%= item.created_at.strftime('%Y-%m-%d %R') %></td>
-              <td><%= item.device.SerialNumber %></td>
+              <td><%= item.lease.name %></td>
               <td><%= transaction_kind item.kind %></td>
               <td><%= item.start_date %> ~ <%= item.end_date %></td>
             </tr>

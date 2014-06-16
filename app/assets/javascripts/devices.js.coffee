@@ -9,12 +9,3 @@ $('#serialNumber').blur ->
     $('#serialNumber-form-group').removeClass('has-error')
     $('#serialNumber-help-block').html('')
     return
-
-$('#start_date').blur ->
-  sdate = $(this).val()
-  if(moment(sdate).isValid())
-    if($('#type_combobox').val() == '1')
-      $('#end_date').val moment(sdate).add('y', 1).format('YYYY-MM-DD')
-    else
-     $('#end_date').val moment(sdate).add('M', 1).format('YYYY-MM-DD')
-  return

@@ -42,3 +42,12 @@ $('#cancel_serial_btn').click ->
     $('#device_serial_field').val('')
     $('#device_id_field').val('')
     return
+
+$('#start_date').blur ->
+  sdate = $(this).val()
+  if(moment(sdate).isValid())
+    if($('#type_combobox').val() == '1')
+      $('#end_date').val moment(sdate).add('y', 1).format('YYYY-MM-DD')
+    else
+      $('#end_date').val moment(sdate).add('M', 1).format('YYYY-MM-DD')
+  return

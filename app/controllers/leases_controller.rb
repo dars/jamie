@@ -20,6 +20,7 @@ class LeasesController < ApplicationController
 
   # GET /leases/1/edit
   def edit
+    @transaction = Transaction.where('lease_id=?', @lease.id).order('created_at desc')
   end
 
   # POST /leases
@@ -59,6 +60,74 @@ class LeasesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to leases_url, :notice => '用戶資料已刪除.' }
       format.json { head :no_content }
+    end
+  end
+
+  def price_report
+    @dealers = User.where('role=?', 'dealer')
+    @total_count = 0
+    @total_price = 0
+    @items = []
+    if (is_dealer?)
+      dealer_id = current_user.id
+    elsif(params[:dealer])
+      dealer_id = params[:dealer]
+    end
+    if(dealer_id)
+      # 找到經銷商
+      @dealer = User.find(dealer_id)
+
+      # 找到所屬用戶
+      @leases = Lease.where('dealer_id=?', dealer_id)
+
+      # 該月總天數
+      @base_days = Time.days_in_month(Date.today.month)
+
+      @leases.each do |lease|
+        days = alive_days lease.id, Date.today
+        item = {
+            'days' => days,
+            'name' => lease.name,
+            'dealer_id' => lease.dealer_id
+        }
+        if (days > 0)
+          if (days == @base_days)
+            # 滿該月總天數以 42 計算
+            @total_price += 42
+            item['price'] = 42
+          else
+            # 不滿該月總天數以 (42/該月總天數)x貢獻天數
+            @total_price += ((42.00/@base_days)*days).floor
+            item['price'] = ((42.00/@base_days)*days).floor
+          end
+          # 該月有貢獻機器
+          @total_count += 1
+          @items.push item
+        end
+      end
+    end
+  end
+
+  def addTransaction
+    @trans = Transaction.new(
+        :lease_id => params[:lease_id],
+        :start_date => params[:start_date],
+        :end_date => params[:end_date],
+        :kind => params[:type]
+    )
+    @trans.save
+    @lease = Lease.find(params[:lease_id])
+    redirect_to edit_lease_path(@lease), :notice => 'Transaction was successfully created.'
+  end
+
+  def deleTransaction
+    @transaction = Transaction.find(params[:id])
+    if @transaction
+      @lease = Lease.find(@transaction.lease_id)
+      @transaction.soft_delete
+      redirect_to edit_lease_path(@lease), :notice => 'Transaction was successfully destroyed.'
+    else
+      redirect_to leases_path
     end
   end
 

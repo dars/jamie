@@ -3,7 +3,7 @@ class PricesController < ApplicationController
 
   def index
     # 取得當前日期
-    d = Date.today
+    @target_day = Date.today
     @licensees = Licensee.all
     @play_times_ar = []
     @licensees.each do |l|
@@ -11,13 +11,13 @@ class PricesController < ApplicationController
     end
 
     # 該月總天數
-    @base_days = Time.days_in_month(d.month)
+    @base_days = Time.days_in_month(@target_day.month)
 
     # 當月基數
     @base = (130.00/@base_days).round(1)
 
     # 當月點唱記錄
-    date_str = d.year.to_s+'-'+d.strftime('%m')+'-%'
+    date_str = @target_day.year.to_s+'-'+@target_day.strftime('%m')+'-%'
     @times = Playlog.where("datetime Like ?", date_str)
 
     # 計算每家版權商點撥次數
@@ -29,17 +29,17 @@ class PricesController < ApplicationController
       end
     end
 
-    # 全部的機器
-    @devices = Device.all
+    # 全部的用戶
+    @leases = Lease.all
 
-    # 計算每台機器的貢獻度
+    # 計算每位用戶的貢獻度
     @total_price_tmp = 0
     @total_count = 0
     @items = []
-    @devices.each do |device|
-      days = alive_days device.ID, d
+    @leases.each do |lease|
+      days = alive_days lease.id, @target_day
       item = {
-        'serial' => device.SerialNumber,
+        'lease' => lease.name,
         'days' => days,
         'price' => 0
       }

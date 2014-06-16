@@ -43,6 +43,11 @@ gem "factory_girl_rails", group: :test
 gem 'spreadsheet'
 gem 'capistrano'
 
+# for mongolog
+gem "mongodb_logger"
+gem "mongo"
+gem "bson_ext"
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

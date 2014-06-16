@@ -73,6 +73,49 @@
             </div>
           <% end %>
         </div>
+
+        <section class="panel sub-panel">
+          <header class="panel-heading">
+            續約記錄
+          </header>
+          <div class="panel-body">
+            <%= form_tag('/leases/addTransaction', method: :post, class:'form-inline') do %>
+              <div class="form-group">
+                <label for="">新增租約：</label>
+              </div>
+              <div class="form-group">
+                <%= select_tag 'type', options_for_select([['年約', 1], ['月約', 2]]), class:'form-control', id:'type_combobox' %>
+              </div>
+              <div class="form-group">
+                <%= date_field_tag 'start_date', '', class:'form-control', maxlength:10, id:'start_date', placeholder:'開始日期' %>
+              </div>
+              <div class="form-group">
+                <%= date_field_tag 'end_date', '',class:'form-control', maxlength:10, id:'end_date', placeholder: '結束日期' %>
+              </div>
+              <%= hidden_field_tag 'lease_id', @lease.id %>
+              <%= submit_tag '送出', class:'btn btn-info' %>
+            <% end %>
+
+            <table class="table  table-hover general-table">
+              <thead>
+              <tr>
+                <th>類型</th>
+                <th>起訖日</th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @transaction.each do |t| %>
+                <tr>
+                  <td><%= transaction_kind t.kind %></td>
+                  <td><%= t.start_date %> ~ <%= t.end_date %></td>
+                  <td><%= link_to '刪除', lease_deleTransaction_path(t), method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger btn-xs' %></td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </section>
       </div>
     </section>
   </div>
