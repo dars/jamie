@@ -15,7 +15,7 @@ module UsersHelper
     elsif role == 'dealer'
       return raw('<span class="label label-primary">經銷商</span>')
     else
-      return raw('<span class="label label-inverse">版權商 ['+user.license.name+']</span>')
+      return raw('<span class="label label-inverse">版權商</span>')
     end
   end
 end

@@ -32,4 +32,7 @@ Rails.application.routes.draw do
   resources :devices
   resources :users
   resources :dealers
+
+  mount MongodbLogger::Server.new, :at => "/mongodb"
+  mount MongodbLogger::Assets.instance, :at => "/mongodb/assets", :as => :mongodb_assets # assets
 end

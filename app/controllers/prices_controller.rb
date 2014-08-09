@@ -1,4 +1,5 @@
 class PricesController < ApplicationController
+  before_action :is_signed?
   layout 'main'
 
   def index

@@ -29,7 +29,11 @@
   <header class="header fixed-top clearfix">
     <!--logo start-->
     <div class="brand">
-      <%= link_to image_tag("logo.png", alt: 'logo'),{:controller => 'licensees' ,:action => 'index'}, class: 'logo'  %>
+      <% if current_user.role == 'licensees' %>
+        <%= link_to image_tag("logo.png", alt: 'logo'),{:controller => 'playlog' ,:action => 'index'}, class: 'logo'  %>
+      <% else %>
+        <%= link_to image_tag("logo.png", alt: 'logo'),{:controller => 'licensees' ,:action => 'index'}, class: 'logo'  %>
+      <% end %>
       <div class="sidebar-toggle-box">
         <div class="fa fa-bars"></div>
       </div>

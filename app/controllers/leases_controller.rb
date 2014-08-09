@@ -1,5 +1,6 @@
 class LeasesController < ApplicationController
   layout 'main'
+  before_action :is_signed?
   before_action :set_lease, only: [:show, :edit, :update, :destroy]
 
   # GET /leases

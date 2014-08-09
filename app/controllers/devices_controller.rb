@@ -68,7 +68,8 @@ class DevicesController < ApplicationController
       raw = "INSERT INTO `device` (`ModelID`, `SerialNumber`, `FolderNameLocal`, `FolderNameOnline`, `FolderNameUpdate`, `IsCanLogin`, `SongServerGroupID`, `ProducersID`, `PublisherID`, `AgentsID`, `ConsumerID`, `Note`, `dealer_id`, `demo`) VALUES"
       sheet.each do |row|
         row.each do |t|
-          raw += "(0, 'HC000#{t.to_s}', '', '', '', 1, 0, 0, 0, 0, 0, NULL, NULL, 1),<br>"
+          serial = sprintf("HC000%03d", t.to_s);
+          raw += "(0, '#{serial}', '', '', '', 1, 0, 0, 0, 0, 0, NULL, NULL, 1),<br>"
         end
       end
       render :text => raw
