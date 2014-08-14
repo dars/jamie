@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
 
   def check_role
     if current_user.role == 'licensees'
-      if params[:controller] != 'playlog' || params[:controller] != 'log'
+      if params[:controller] != 'playlog' && params[:controller] != 'log'
         redirect_to playlog_index_path
       end
     end
