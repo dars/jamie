@@ -34,4 +34,12 @@ class ApplicationController < ActionController::Base
     end
     return (@date2 - @date1 + 1).to_i
   end
+
+  def check_role
+    if current_user.role == 'licensees'
+      if params[:controller] != 'playlog'
+        redirect_to playlog_index_path
+      end
+    end
+  end
 end

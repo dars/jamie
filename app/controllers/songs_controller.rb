@@ -1,6 +1,7 @@
 class SongsController < ApplicationController
   layout "main"
   before_action :is_signed?
+  before_action :check_role
   before_action :set_song, only: [:show, :edit, :update, :destroy]
   before_action :set_options, only: [:new, :edit]
 

@@ -1,8 +1,10 @@
+<% javascript 'log' %>
 <div class="row">
   <div class="col-sm-12">
     <section class="panel">
       <header class="panel-heading">
-        General Table
+        Log Data List Table&nbsp;
+        <%= image_tag("ajax-loader.gif", alt: 'loader', id: 'loader') %>
       </header>
       <div class="panel-body">
         <table class="table  table-hover general-table">
@@ -14,7 +16,7 @@
             <th>事件</th>
           </tr>
           </thead>
-          <tbody>
+          <tbody id="log_content">
           <% @logs.each do |log| %>
             <tr>
               <td><%= log.DateTime %></td>
@@ -25,7 +27,6 @@
           <% end %>
           </tbody>
         </table>
-        <%= will_paginate @logs %>
       </div>
     </section>
   </div>

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get '/leases/price_report'
 
   get '/log/index'
+  get '/log/update_data'
 
   get '/songRecord' => 'log#songRecord'
 

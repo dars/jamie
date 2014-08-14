@@ -1,5 +1,6 @@
 class PlaylogController < ApplicationController
   before_action :is_signed?
+  before_action :check_role
   layout 'main'
 
   def index

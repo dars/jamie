@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   layout 'main', :except => [:login]
 
   before_action :is_signed?
+  before_action :check_role
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
